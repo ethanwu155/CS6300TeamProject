@@ -57,3 +57,7 @@ Comments: Since this is an android device, we may want to persist the data in an
 
 
 ### Summary
+
+Our group's UML Design experience is limited so being able to see each other individual designs and discuss them together was an important learning experience. Review/critique of our individual designs revealed that various requirements stated in the Requirements Document were not captured by the UML Diagram. Additionally, we found that over complicated designs can prove to be 1) difficult to read and 2) possibly over-constrained. As a group we gravitated towards designs that satisfied all the goals from the Requirements Document and were simple. We felt it was important not to weigh down designs with too much complexity. Over-constrained designs can potentially be hard to work with whereas simpler designs can be expanded upon if necessary. For these reasons, we decided as a group to build off Ryan's UML Diagram, which accomplished all the necessary goals without the unnecessary complexity.
+
+From a teamwork perspective, it was especially important for this first deliverable that we were all present with our designs ready to share. Open, friendly dialogue was essential to have efficient and productive discussion. In the end, we learned from seeing each other's UML diagrams and hearing the thought process behind implementation. 
