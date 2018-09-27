@@ -22,4 +22,38 @@
 
 ### Team Design
 
+>The quiz score statistics for a student S should list all quizzes, whether they were played by S or not, and including the quizzes created by S.
+
+Comments:  I changed the name of one of the Application methods to getQuizScoresByStudent and changed it to return a Map instead of a list.  This would be the same structure as the quizHistory, but filtered to only include the Student’s Quiz Events.  Quizzes the Student has not yet played will be contained in the Map, their value being an empty array. 
+
+>The quizzes not played by S can be displayed in any order (after the ones played).
+
+Comments:  We could solve this by making the Map a TreeMap and then sorting the Map by number of QuizEvents.  This way, all the quizzes not played would be at the end.  
+
+
+>For quizzes not played by S, only the names of the first three students to score 100% on the quiz should be displayed.
+
+Comments:  Since each quiz object holds a Set of Student objects that obtained the three first 100% scores, this is already addressed.  
+
+
+>The names displayed (and used to sort) in the statistics for the first three students to score 100% on the quiz can be either their usernames or their real names.
+
+Comments:Since each quiz object holds a Set of Student objects that obtained the three first 100% scores, this is already addressed.  
+
+
+>Every word in a quiz should be shown once and only once.
+
+Comments:  This logic can handled in the getNextQuestion method in the QuizEvent class.  I changed the method generateQuestion in the Quiz class to allow for passing a Word to allow for this.   
+
+
+>Incorrect definitions, conversely, may repeat.
+
+Comments:  This assumption is already built in and is handled in the dynamic creation of new questions in the generateQuestion method.  
+
+
+>General clarification: all relevant data (scores, statistics, quizzes, student logins) should persist between uses of the application.
+
+Comments: Since this is an android device, we may want to persist the data in an SQLite database.  This can be accomplished using Room, which is an abstraction layer over an SQLite database.  This can be easily implemented using the classes we have defined. 
+
+
 ### Summary
