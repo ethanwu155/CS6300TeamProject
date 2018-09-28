@@ -22,6 +22,12 @@
 
 ### Team Design
 
+![alt text](Group%20Project%20D1%20-%20Updated.jpg)
+
+For our design, we decided to branch off of Ryan's because we thought that it represented the described system and fulfilled the requirements in the most accurate and efficient manner. The Application is the main part of the design, and that essentially represents the controller that holds together the entire system. From there, a Student has the ability to login, add/remove a Quiz, practice a Quiz, and get various Quiz statistics. Some of us had something similar in our designs, but we felt that Ryan's design portrayed it the most efficiently, given the requirements. All of us had a Student class, and that was largely the same across the board. We also all had a Quiz class, which again was largely the same across the board. After that however, our designs started to diverge as we got into the more complicated business logic of the system.
+
+Ryan created the idea of a QuizEvent, which is similar to Ben's idea of a QuizManager or Ethan's idea of a Practice, which aggregated a number of QuestionEvents, which hold whether or not the answer to a given Question was correct. This QuizEvent effectively allowed a Student to practice a Quiz, and it also kept statistics about that practice session. All of us had something somewhat similar in our respective designs, but we felt that Ryan's was the best design, as it did not overcomplicate things, it broke things out in a modular and flexible manner, and we thought it would be easy to maintain as well. Overall, this final design had pieces of all of our designs in it, but we felt that it would be best to branch off of Ryan's design since we thought it fulfilled the requirements more than the other three. 
+
 >The quiz score statistics for a student S should list all quizzes, whether they were played by S or not, and including the quizzes created by S.
 
 Comments:  I changed the name of one of the Application methods to getQuizScoresByStudent and changed it to return a Map instead of a list.  This would be the same structure as the quizHistory, but filtered to only include the Student’s Quiz Events.  Quizzes the Student has not yet played will be contained in the Map, their value being an empty array. 
@@ -57,8 +63,6 @@ Comments: Since this is an android device, we may want to persist the data in an
 
 
 ### Summary
-
-![alt text](Group%20Project%20D1%20-%20Updated.jpg)
 
 Our group's UML Design experience is limited so being able to see each other individual designs and discuss them together was an important learning experience. Review/critique of our individual designs revealed that various requirements stated in the Requirements Document were not captured by the UML Diagram. Additionally, we found that over complicated designs can prove to be 1) difficult to read and 2) possibly over-constrained. As a group we gravitated towards designs that satisfied all the goals from the Requirements Document and were simple. We felt it was important not to weigh down designs with too much complexity. Over-constrained designs can potentially be hard to work with whereas simpler designs can be expanded upon if necessary. For these reasons, we decided as a group to build off Ryan's UML Diagram, which accomplished all the necessary goals without the unnecessary complexity.
 
