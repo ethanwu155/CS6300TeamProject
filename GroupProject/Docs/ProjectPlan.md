@@ -1,6 +1,5 @@
 # Project Plan - Team 69
 
-**Ethan Wu**
 
 ## 1. Introduction
 
