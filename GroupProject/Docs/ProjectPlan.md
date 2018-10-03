@@ -1,6 +1,6 @@
 # Project Plan - Team 69 Version 1
 
-**Author**: Team 69
+**Author**: Ethan Wu
 
 ## 1. Introduction
 
@@ -34,29 +34,21 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
   
   *Description:* Document outlining Vocabulary Quiz Applicaton Software Development Process. Contains brief introduction, Process Plan, and team members/roles.
   
-  *Entrance Criteria:* 
+  *Entrance Criteria:* Team Leader/Project Manager decided on. Understanding of Project and outline of deliverables.
   
   *Exit Criteria:* Initial Process Plan document complete with the following sections: Introduction, Process Plan, Roles. This document will most likely see future edits as team moves further along in development process.
   
   > Use Case Model
   
-  *Description:* 
+  *Description:* Document containing Use Case Diagram for Vocabulary Quiz application as well as Use Case Descriptions outlining the different use cases of the application. Use Case Descriptions should include the following information for each use case: Requirements, Pre-Conditions, Post-Conditions, and Scenarios.
   
-  *Entrance Criteria:* 
+  *Entrance Criteria:* Understanding of the Project Requirements and creation of Use Case Diagram.
   
-  *Exit Criteria:*
-  
-  > Supplementary Requirements
-  
-  *Description:* 
-  
-  *Entrance Criteria:* 
-  
-  *Exit Criteria:*
-  
+  *Exit Criteria:* Use Case Model document complete with Use Case Diagram and Use Case Description.
+    
   > Design Document
   
-  *Description:* 
+  *Description:* Document containing the following information: 
   
   *Entrance Criteria:* 
   
@@ -144,8 +136,8 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
 
 | Role | Responsibility | Assignment |
 | ---- | -------------- | ---------- |
-| Team Leader/Project Manager | Team Leader/Project Manager is responsible for coordinating schedule for project. They will be tasked with keeping Process Plan Document up to date as well as repository management and deliverable submission | 
+| Team Leader/Project Manager | Team Leader/Project Manager is responsible for coordinating schedule for project. They will be tasked with keeping Process Plan Document up to date as well as repository management and deliverable submission. | Ethan Wu | 
 | Architect | Architect will be responsible for high level design choice for application and tasked with monitoring the progress of Developers. |
 | Android Developer | Android Developer will be responsible for low level design/implementation for application. |
-| Test Engineer | Test Engineer will be tasked with creating and executing test plan. Results will be documented and shared with Architect and Developers to address issues/bugs with application |
+| Test Engineer | Test Engineer will be tasked with creating and executing test plan. Results will be documented and shared with Architect and Developers to address issues/bugs with application. |
   
