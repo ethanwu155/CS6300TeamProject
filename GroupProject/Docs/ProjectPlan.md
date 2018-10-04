@@ -66,7 +66,7 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
 
   * Document Revision
   
-    - *Description:* 
+    - *Description:* Any newly introduced requirements or changes in design will require edits to documents to reflect changes made during process of creating project. 
   
     - *Entrance Criteria:* Deliverable 2 Documents completed (ProjectPlan, TestCase, UseCase, DesignDocument). 
   
@@ -74,53 +74,53 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
   
   * Initial Version of Application
   
-    - *Description:* 
+    - *Description:* Team will execute Design Plan and will come up with a preliminary Vocabulary Quiz Application. This will be an alpha version of the application that will require more work and revision.
   
-    - *Entrance Criteria:* 
+    - *Entrance Criteria:* Complete Design Document/Plan, GitHub for Version Control, Android Studio
   
-    - *Exit Criteria:*
+    - *Exit Criteria:* Team will write code for application and will have alpha version of application displaying basic functionality of Vocabulary Quiz Application. 
   
   * Test Plan with (partial) results
   
-    - *Description:* 
+    - *Description:* Execution of Test Plan on alpha version of Vocabulary Quiz Application.
   
-    - *Entrance Criteria:* 
+    - *Entrance Criteria:* Complete Test Plan with table outline Test Case, Alpha version of Vocabulary Quiz Application 
   
-    - *Exit Criteria:*
+    - *Exit Criteria:* Documentation of Test Cases in table sharing the following new information: actual results, pass/fail condition. 
   
   * User Manual
   
-    - *Description:* 
+    - *Description:* Document that introduces Android Application to those unfamiliar with the application. It will include information on the application functionality and how to use the application for themselves if they are interested.
   
-    - *Entrance Criteria:* 
+    - *Entrance Criteria:* Understanding of application, GitHub .md files
   
-    - *Exit Criteria:*
+    - *Exit Criteria:* Complete User Manual with required information and idealy screen shots of applcation. This document will be updated until the final version is complete.
 
 * __Deliverable 4 - Transition__ - Due 10/20/2018 8 am EST
 
   * Document Revision
   
-    - *Description:* 
+    - *Description:* Any newly introduced requirements or changes in design will require edits to documents to reflect changes made during process of creating project. 
   
-    - *Entrance Criteria:* 
+    - *Entrance Criteria:* Deliverable 2 Documents completed (ProjectPlan, TestCase, UseCase, DesignDocument).
   
-    - *Exit Criteria:*
+    - *Exit Criteria:* Edits made to the Deliverable2 documents to reflect changes to Project Plan or Design.
   
   * Test Plan with (FINAL) results
   
-    - *Description:* 
+    - *Description:* Execution of Test Plan on FINAL version of Vocabulary Quiz Application.
   
-    - *Entrance Criteria:* 
+    - *Entrance Criteria:* Complete Test Plan with table outline Test Case, FINAL version of Vocabulary Quiz Application 
   
-    - *Exit Criteria:*
+    - *Exit Criteria:* Documentation of Test Cases in table sharing the following new information: actual results, pass/fail condition. Idealy all test cases will have passed at this stage. 
   
   * Final Verison of Application
   
-    - *Description:* 
+    - *Description:* Team will continue to work off of Alpha verison of application, improving implementation of methods, fixing bugs, etc. This will be the FINAL version of the application ready for release.
   
-    - *Entrance Criteria:* 
+    - *Entrance Criteria:* Alpha version of Application, Project Requirements, Design Document, Android Studio, GitHub for Version Control
   
-    - *Exit Criteria:*
+    - *Exit Criteria:* Completed Vocabulary Quiz Application that is functional and implements all project requirements. 
   
 
 ## 3. Team
