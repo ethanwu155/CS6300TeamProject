@@ -139,5 +139,5 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
 | Team Leader/Project Manager | Team Leader/Project Manager is responsible for coordinating schedule for project. They will be tasked with keeping Process Plan Document up to date as well as repository management and deliverable submission. | Ethan Wu | 
 | Architect | Architect will be responsible for high level design choice for application and tasked with monitoring the progress of Developers. |
 | Android Developer | Android Developer will be responsible for low level design/implementation for application. |
-| Test Engineer | Test Engineer will be tasked with creating and executing test plan. Results will be documented and shared with Architect and Developers to address issues/bugs with application. |
+| Test Engineer | Test Engineer will be tasked with creating and executing test plan. Results will be documented and shared with Architect and Developers to address issues/bugs with application. | Corey Robbins |
   
