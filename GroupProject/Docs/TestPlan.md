@@ -6,8 +6,6 @@
 
 ### 1.1 Overall strategy
 
-*This section should provide details about your unit-, integration-, system-, and regression-testing strategies. In particular, it should discuss which activities you will perform as part of your testing process, and who will perform such activities.*
-
 We will try to automate as many tests as possible, because it is almost always easier to automate tests than to run them manually. However, there will be some tests that we will not be able to automate, because there is a UI portion. 
 
 ##### Unit Tests
@@ -24,31 +22,21 @@ Regression tests do not need to be in their own suite, but rather after writing 
 
 ### 1.2 Test Selection
 
-*Here you should discuss how you are going to select your test cases, that is, which black-box and/or white-box techniques you will use. If you plan to use different techniques at different testing levels (e.g., unit and system), you should clarify that.*
-
 The unit tests will all be white-box since they're testing individual functionality at a very modular level, and it makes more sense to white-box test. Integration tests should also mostly be white-box tested because they're testing that various components work together. The system tests should be a mixture of white and black box testing. Because they are testing the entire system end-to-end, they should be as black box as possible, because the tester shouldn't need to know a whole lot about the underlying code since it's testing the end-to-end functionality. 
 
 ### 1.3 Adequacy Criterion
-
-*Define how you are going to assess the quality of your test cases. Typically, this involves some form of functional or structural coverage. If you plan to use different techniques at different testing levels (e.g., unit and system), you should clarify that.*
 
 We will go with a coverage tool to make sure that we get an acceptable level of code coverage in the tests. 100% code coverage would of course be the most ideal, but anything over 90% will also be acceptable. 
 
 ### 1.4 Bug Tracking
 
-*Describe how bugs and enhancement requests will be tracked.*
-
 Bug reports and enhancement requests can be easily tracked through our GitHub Issues page. If this application was converted to a truly open-source project, users would be able to easily report bugs or request enhancements through the Issues page. As developers, we can comment, close, or even open bugs/feature requests. 
 
 ### 1.5 Technology
 
-*Describe any testing technology you intend to use or build (e.g., JUnit, Selenium).*
-
 We will mainly be using JUnit, and potentially use Selenium as well for testing.
 
 ## 2 Test Cases
-
-*This section should be the core of this document. You should provide a table of test cases, one per row. For each test case, the table should provide its purpose, the steps necessary to perform the test, the expected result, the actual result (to be filled later), pass/fail information (to be filled later), and any additional information you think is relevant.*
 
 | Purpose | Steps | Expected | Actual | P/F
 | ------- | :---- | :------- | :----- | :--
