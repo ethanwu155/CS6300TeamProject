@@ -1,5 +1,5 @@
 # User Case Model
-**Author** : Ethan Wu
+**Author** : 6300Fall18Team69
 
 ## 1. Use Case Diagram
 
