@@ -1,6 +1,6 @@
 # Project Plan - Team 69 Version 1
 
-**Author**: Ethan Wu
+**Author**: 6300Fall18Team69
 
 ## 1. Introduction
 
@@ -12,115 +12,115 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
 
 * __Deliverable 1 - Software Design__ - Due 9/29/2018 8 am EST
 
-  > Individual UML Class Diagrams
+  * Individual UML Class Diagrams
   
-  *Description:* Each group member uploads completed UML Class Diagram for Vocabulary Quiz Application onto Team GitHub Repository. Class Diagram created from requirements outlined from Requirements Document.
+    - *Description:* Each group member uploads completed UML Class Diagram for Vocabulary Quiz Application onto Team GitHub Repository. Class Diagram created from requirements outlined from Requirements Document.
   
-  *Entrance Criteria:* Complete Individual UML Class Diagram.
+    - *Entrance Criteria:* Complete Individual UML Class Diagram.
   
-  *Exit Criteria:* Individual UML Class Diagram uploaded onto Github in Design-Individual Folder.
+    - *Exit Criteria:* Individual UML Class Diagram uploaded onto Github in Design-Individual Folder.
   
-  > Team UML Class Diagram
+  * Team UML Class Diagram
   
-  *Description:* Team conducts discussion of Individual UML Class Diagrams listing Pros & Cons. Based off of discussions, come up with a team UML Class Diagram. Summarize discussion in a formal Design-Team document and upload to team GitHub page.
+    - *Description:* Team conducts discussion of Individual UML Class Diagrams listing Pros & Cons. Based off of discussions, come up with a team UML Class Diagram. Summarize discussion in a formal Design-Team document and upload to team GitHub page.
   
-  *Entrance Criteria:* Complete Individual UML Class Diagram, Vocabulary Quiz Application Requirements Document, medium for team discussion.
+    - *Entrance Criteria:* Complete Individual UML Class Diagram, Vocabulary Quiz Application Requirements Document, medium for team discussion.
   
-  *Exit Criteria:* Team UML Class Diagram and Team-Design document containing updated team UML Diagram and summary of team discussion/design/lessons learned.
+    - *Exit Criteria:* Team UML Class Diagram and Team-Design document containing updated team UML Diagram and summary of team discussion/design/lessons learned.
 
 * __Deliberable 2 - Inception & Elaboration__ - Due 10/6/2018 8 am EST
 
-  > Project Plan
+  * Project Plan
   
-  *Description:* Document outlining Vocabulary Quiz Applicaton Software Development Process. Contains brief introduction, Process Plan, and team members/roles.
+    - *Description:* Document outlining Vocabulary Quiz Applicaton Software Development Process. Contains brief introduction, Process Plan, and team members/roles.
   
-  *Entrance Criteria:* Team Leader/Project Manager decided on. Understanding of Project and outline of deliverables.
+    - *Entrance Criteria:* Team Leader/Project Manager decided on. Understanding of Project and outline of deliverables.
   
-  *Exit Criteria:* Initial Process Plan document complete with the following sections: Introduction, Process Plan, Roles. This document will most likely see future edits as team moves further along in development process.
+    - *Exit Criteria:* Initial Process Plan document complete with the following sections: Introduction, Process Plan, Roles. This document will most likely see future edits as team moves further along in development process.
   
-  > Use Case Model
+  * Use Case Model
   
-  *Description:* Document containing Use Case Diagram for Vocabulary Quiz application as well as Use Case Descriptions outlining the different use cases of the application. Use Case Descriptions should include the following information for each use case: Requirements, Pre-Conditions, Post-Conditions, and Scenarios.
+    - *Description:* Document containing Use Case Diagram for Vocabulary Quiz application as well as Use Case Descriptions outlining the different use cases of the application. Use Case Descriptions should include the following information for each use case: Requirements, Pre-Conditions, Post-Conditions, and Scenarios.
   
-  *Entrance Criteria:* Understanding of the Project Requirements and creation of Use Case Diagram.
+    - *Entrance Criteria:* Understanding of the Project Requirements and tools for creating Use Case Diagram (ie LucidChart, etc.)
   
-  *Exit Criteria:* Use Case Model document complete with Use Case Diagram and Use Case Description.
+    - *Exit Criteria:* Use Case Model document complete with Use Case Diagram and Use Case Description.
     
-  > Design Document
+  * Design Document
   
-  *Description:* Document containing the following information: 
+    - *Description:* Document containing the following information: Design Considerations (Assumptions, Constraints, System Environment), Architectural Design (Component Diagram, Deployment Diagram), Low Level Design (Class Diagram) and User Interface Desgin.
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* Understanding of Project Requirements, tools for creating Diagrams (ie LucidChart, etc.)
   
-  *Exit Criteria:*
+    - *Exit Criteria:* Completed document containing the required Diagrams, UI Design and Design Considerations.
   
-  > Test Plan
+  * Test Plan
   
-  *Description:* 
+    - *Description:* Document containing information regarding teams Test Plan for Vocabulary Quiz Application. This includes the following information: Overall Strategy, Test Selection, Adequacy Criterion, Bug Tracking, and Technology. Lastly, the main part of the document will be a table of test cases that provide information: purpose, steps, expected results, actual results, pass/fail information.
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* Understanding of Project Requirements, understanding of Test Cases
   
-  *Exit Criteria:*
+    - *Exit Criteria:* Completed document containing Test Plan information. Most importantly a preliminary table containing test cases team plans on carrying out for application. 
 
 * __Deliverable 3 - Construction__ - Due 10/13/2018 8 am EST
 
-  > Document Revision
+  * Document Revision
   
-  *Description:* 
+    - *Description:* 
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* Deliverable 2 Documents completed (ProjectPlan, TestCase, UseCase, DesignDocument). 
   
-  *Exit Criteria:*
+    - *Exit Criteria:* Edits made to the Deliverable2 documents to reflect changes to Project Plan or Design.
   
-  > Initial Version of Application
+  * Initial Version of Application
   
-  *Description:* 
+    - *Description:* 
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* 
   
-  *Exit Criteria:*
+    - *Exit Criteria:*
   
-  > Test Plan with (partial) results
+  * Test Plan with (partial) results
   
-  *Description:* 
+    - *Description:* 
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* 
   
-  *Exit Criteria:*
+    - *Exit Criteria:*
   
-  > User Manual
+  * User Manual
   
-  *Description:* 
+    - *Description:* 
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* 
   
-  *Exit Criteria:*
+    - *Exit Criteria:*
 
 * __Deliverable 4 - Transition__ - Due 10/20/2018 8 am EST
 
-  > Document Revision
+  * Document Revision
   
-  *Description:* 
+    - *Description:* 
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* 
   
-  *Exit Criteria:*
+    - *Exit Criteria:*
   
-  > Test Plan with (FINAL) results
+  * Test Plan with (FINAL) results
   
-  *Description:* 
+    - *Description:* 
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* 
   
-  *Exit Criteria:*
+    - *Exit Criteria:*
   
-  > Final Verison of Application
+  * Final Verison of Application
   
-  *Description:* 
+    - *Description:* 
   
-  *Entrance Criteria:* 
+    - *Entrance Criteria:* 
   
-  *Exit Criteria:*
+    - *Exit Criteria:*
   
 
 ## 3. Team
