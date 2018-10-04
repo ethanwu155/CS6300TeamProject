@@ -1,5 +1,5 @@
 # Design Document
-**Author**:
+**Author**: 6300Fall18Team69
 
 ## 1 Design Considerations
 
@@ -25,3 +25,5 @@
 ### 3.2 Other Diagrams
 
 ## 4 User Interface Design
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/CS6300%20UI%20Design%20.png)
