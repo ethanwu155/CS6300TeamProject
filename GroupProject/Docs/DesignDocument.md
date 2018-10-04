@@ -6,8 +6,12 @@
 ### 1.1 Assumptions
 
 ### 1.2 Constraints
+* User must have smart phone
 
 ### 1.3 System Environment
+* _Plateform_: Android SDK
+* _Operating Systems_: Android
+* _User Environment_: Phone Application
 
 ## 2 Architecture Design
 
