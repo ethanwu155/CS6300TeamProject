@@ -4,6 +4,9 @@
 ## 1 Design Considerations
 
 ### 1.1 Assumptions
+* This app does not maintain cross session state. For example if user completes adding Quiz or exits before finishing process, than process will start from the beginning. 
+* Time and Date is provided by a utility class
+* All data for Quiz application is stored locally on the phone. 
 
 ### 1.2 Constraints
 * User must have smart phone
