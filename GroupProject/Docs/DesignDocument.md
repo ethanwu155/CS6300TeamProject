@@ -9,7 +9,7 @@
 * User must have smart phone
 
 ### 1.3 System Environment
-* _Plateform_: Android SDK
+* _Platform_: Android SDK
 * _Operating Systems_: Android
 * _User Environment_: Phone Application
 
@@ -19,6 +19,7 @@
 
 
 ### 2.2 Deployment Diagram
+* Due to the lack of network requirements and all the data being stored locally, the application would be deployed on a single Android device and a deployment diagram would not be necessary.
 
 ## 3 Low Level Design
 
