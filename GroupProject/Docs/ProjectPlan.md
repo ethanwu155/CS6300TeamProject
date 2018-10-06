@@ -61,6 +61,14 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
     - *Entrance Criteria:* Understanding of Project Requirements, understanding of Test Cases
   
     - *Exit Criteria:* Completed document containing Test Plan information. Most importantly a preliminary table containing test cases team plans on carrying out for application. 
+    
+  * Extra Requirements
+  
+   - *Description:* List of non-functional requirements.
+   
+   - *Entrance Criteria:* Understanding of Project Requirements
+   
+   - *Exit Criteria:* Generate a list of non-functional requirements containing things such as UI and commonents regarding application performance. 
 
 * __Deliverable 3 - Construction__ - Due 10/13/2018 8 am EST
 
