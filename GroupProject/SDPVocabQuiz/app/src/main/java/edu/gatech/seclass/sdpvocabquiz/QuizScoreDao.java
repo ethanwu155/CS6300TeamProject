@@ -1,12 +1,14 @@
 package edu.gatech.seclass.sdpvocabquiz;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+@Dao
 public interface QuizScoreDao {
 
     @Query("SELECT * FROM QuizScore")
@@ -44,7 +46,7 @@ public interface QuizScoreDao {
     @Query("SELECT Student.username FROM Student " +
             "INNER JOIN QuizScore ON QuizScore.studentId = Student.id " +
             "INNER JOIN Quiz on Quiz.studentId = Student.id " +
-            "WHERE Quiz.name LIKE :name AND QuizScore.finalScore = 100" +
+            "WHERE Quiz.name LIKE :name AND QuizScore.finalScore = 100 " +
             "ORDER BY QuizScore.timestamp DESC " +
             "LIMIT 3")
     LiveData<List<String>> getFirstThreeStudentHundredsByQuizName(String name);

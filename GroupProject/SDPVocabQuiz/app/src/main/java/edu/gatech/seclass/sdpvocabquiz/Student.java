@@ -2,6 +2,7 @@ package edu.gatech.seclass.sdpvocabquiz;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 
 @Entity
 public class Student {
@@ -11,6 +12,8 @@ public class Student {
     public String fullName;
     public String username;
     public String major;
+
+    @TypeConverters(SeniorityLevelConverter.class)
     public SeniorityLevel seniorityLevel;
     public String emailAddress;
 
@@ -20,6 +23,19 @@ public class Student {
         this.major = major;
         this.seniorityLevel = seniorityLevel;
         this.emailAddress = emailAddress;
+    }
+
+    public enum SeniorityLevel {
+        FRESHMAN(0),
+        SOPHOMORE(1),
+        JUNIOR(2),
+        SENIOR(3);
+
+        public int value;
+
+        SeniorityLevel(int value) {
+            this.value = value;
+        }
     }
 
 }
