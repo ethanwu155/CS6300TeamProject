@@ -7,7 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 @Database(entities = {Question.class, QuestionEvent.class, Quiz.class, QuizEvent.class, Student.class, Word.class}, version = 1)
-@TypeConverters({Converters.class})
+@TypeConverters({ListConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;

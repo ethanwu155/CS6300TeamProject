@@ -1,5 +1,6 @@
 package edu.gatech.seclass.sdpvocabquiz;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -11,10 +12,16 @@ import java.util.List;
 public interface QuizDao {
 
     @Query("SELECT * FROM Quiz")
-    List<QuizWithWords> loadQuizzesWithWords();
+    LiveData<List<QuizWithWords>> loadAllQuizzesWithWords();
 
-    @Query("SELECT * FROM Quiz WHERE id = :id")
-    QuizWithWords loadQuizWithWords(int id);
+    @Query("SELECT * FROM Quiz WHERE Quiz.id = :id")
+    List<QuizWithWords> loadQuizWithWordsById(int id);
+
+    @Query("SELECT * FROM Quiz WHERE Quiz.studentId = :studentId")
+    LiveData<List<Quiz>> getQuizzesByStudentId(int studentId);
+
+    @Query("SELECT * FROM Quiz WHERE Quiz.studentId != :studentId")
+    LiveData<List<Quiz>> getQuizzesNotByStudentId(int studentId);
 
     @Insert
     void addQuiz(Quiz quiz);

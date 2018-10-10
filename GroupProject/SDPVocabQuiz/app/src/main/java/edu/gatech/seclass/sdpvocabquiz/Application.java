@@ -2,10 +2,14 @@ package edu.gatech.seclass.sdpvocabquiz;
 
 public class Application {
 
-    Student currentUser = null;
+    private String currentUser = null;
 
-    public void login(Student student) {
-        this.currentUser = student;
+    public void login(String username) {
+        this.currentUser = username;
+    }
+
+    public void logout() {
+        this.currentUser = null;
     }
 
 }

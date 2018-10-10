@@ -7,15 +7,15 @@ public class QuizEvent {
     public Student student;
     public Quiz quiz;
     public Date timestamp;
-    public ArrayList<QuestionEvent> questions;
+    public ArrayList<QuestionEvent> questions = new ArrayList<>();
     public Double score;
 
-    public QuizEvent(Student student, Quiz quiz, Date timestamp, ArrayList questions, Double score) {
+    public QuizEvent(Student student, Quiz quiz, Date timestamp, ArrayList questions) {
         this.student = student;
         this.quiz = quiz;
         this.timestamp = timestamp;
-        this.questions = questions;
-        this.score = score;
+        this.questions.addAll(questions);
+        this.score = 0.0;
     }
 
 }

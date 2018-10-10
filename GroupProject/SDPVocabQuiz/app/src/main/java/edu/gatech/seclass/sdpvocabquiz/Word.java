@@ -7,10 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(foreignKeys = {
         @ForeignKey(entity = Quiz.class,
             parentColumns = "id",
-            childColumns = "quizId"),
-        @ForeignKey(entity = Question.class,
-            parentColumns = "id",
-            childColumns = "questionId")})
+            childColumns = "quizId")})
 public class Word {
     @PrimaryKey
     public int id;
@@ -18,7 +15,6 @@ public class Word {
     public String name;
     public String definition;
     public int quizId;
-    public int questionId;
 
     public Word(String name, String definition) {
         this.name = name;

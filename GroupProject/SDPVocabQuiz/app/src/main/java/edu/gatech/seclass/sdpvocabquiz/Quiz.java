@@ -4,7 +4,6 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 @Entity(foreignKeys = {
         @ForeignKey(entity = Student.class,
