@@ -1,4 +1,4 @@
-package edu.gatech.seclass.sdpvocabquiz;
+package edu.gatech.seclass.sdpvocabquiz.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.dummy.DummyContent;
 import edu.gatech.seclass.sdpvocabquiz.dummy.DummyContent.DummyItem;
-
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.

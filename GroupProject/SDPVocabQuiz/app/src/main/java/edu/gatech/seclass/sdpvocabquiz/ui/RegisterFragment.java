@@ -1,4 +1,4 @@
-package edu.gatech.seclass.sdpvocabquiz;
+package edu.gatech.seclass.sdpvocabquiz.ui;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import edu.gatech.seclass.sdpvocabquiz.R;
 
 public class RegisterFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -72,7 +74,7 @@ public class RegisterFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnLoginListener");
         }
     }
 
