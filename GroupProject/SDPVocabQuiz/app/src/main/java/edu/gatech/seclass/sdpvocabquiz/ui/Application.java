@@ -30,6 +30,9 @@ public class Application extends AppCompatActivity implements LoginFragment.OnLo
                 .commit();
 
     }
+    public Application() {
+
+    }
     public Application(Context context) {
         this.db = AppDatabase.getInMemoryDatabase(context);
     }
