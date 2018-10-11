@@ -1,7 +1,9 @@
-package edu.gatech.seclass.sdpvocabquiz;
+package edu.gatech.seclass.sdpvocabquiz.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.gatech.seclass.sdpvocabquiz.R;
 
 public class MainActivity extends AppCompatActivity {
 
