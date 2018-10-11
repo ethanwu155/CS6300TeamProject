@@ -15,6 +15,7 @@
 * _Platform_: Android SDK
 * _Operating Systems_: Android
 * _User Environment_: Phone Application
+* _Database Library_: Android Room Persistence Library
 
 ## 2 Architecture Design
 
