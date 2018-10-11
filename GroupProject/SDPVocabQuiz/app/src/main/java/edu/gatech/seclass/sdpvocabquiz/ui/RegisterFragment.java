@@ -20,7 +20,7 @@ public class RegisterFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnRegisterListener mListener;
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -63,15 +63,15 @@ public class RegisterFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onRegistered(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnRegisterListener) {
+            mListener = (OnRegisterListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnLoginListener");
@@ -94,8 +94,7 @@ public class RegisterFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public interface OnRegisterListener {
+        void onRegistered(Uri uri);
     }
 }
