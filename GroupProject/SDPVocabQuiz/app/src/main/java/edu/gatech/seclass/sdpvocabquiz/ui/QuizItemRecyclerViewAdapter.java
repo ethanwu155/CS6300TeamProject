@@ -1,4 +1,4 @@
-package edu.gatech.seclass.sdpvocabquiz;
+package edu.gatech.seclass.sdpvocabquiz.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.gatech.seclass.sdpvocabquiz.QuizListFragment.OnListFragmentInteractionListener;
+import edu.gatech.seclass.sdpvocabquiz.R;
+import edu.gatech.seclass.sdpvocabquiz.ui.QuizListFragment.OnListFragmentInteractionListener;
 import edu.gatech.seclass.sdpvocabquiz.dummy.DummyContent.DummyItem;
 
 import java.util.List;
