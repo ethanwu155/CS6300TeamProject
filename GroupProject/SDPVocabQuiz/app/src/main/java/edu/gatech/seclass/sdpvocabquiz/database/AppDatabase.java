@@ -1,4 +1,4 @@
-package edu.gatech.seclass.sdpvocabquiz;
+package edu.gatech.seclass.sdpvocabquiz.database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;

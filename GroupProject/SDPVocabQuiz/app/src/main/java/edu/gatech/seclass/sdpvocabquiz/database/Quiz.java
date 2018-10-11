@@ -1,4 +1,4 @@
-package edu.gatech.seclass.sdpvocabquiz;
+package edu.gatech.seclass.sdpvocabquiz.database;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
@@ -19,7 +19,7 @@ public class Quiz {
 
     public int studentId;
 
-    public Quiz(String name, String description, ArrayList incorrectDefinitions) {
+    public Quiz(String name, String description, ArrayList<String> incorrectDefinitions) {
         this.name = name;
         this.description = description;
         this.incorrectDefinitions.addAll(incorrectDefinitions);

@@ -1,4 +1,4 @@
-package edu.gatech.seclass.sdpvocabquiz;
+package edu.gatech.seclass.sdpvocabquiz.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
@@ -19,12 +19,19 @@ public class QuizScore {
     @PrimaryKey
     public int id;
 
-    public int finalScore;
+    public float finalScore;
 
     @TypeConverters(DateConverter.class)
     public Date timestamp;
 
     public int studentId;
     public int quizId;
+
+    public QuizScore(int studentId, int quizId, float finalScore) {
+        this.finalScore = finalScore;
+        this.timestamp = new Date();
+        this.studentId = studentId;
+        this.quizId = quizId;
+    }
 
 }
