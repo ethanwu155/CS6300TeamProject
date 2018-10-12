@@ -32,6 +32,6 @@ public interface QuizDao {
     void addQuiz(Quiz quiz);
 
     @Delete
-    void deleteQuiz(String quizName);
+    void deleteQuiz(Quiz quiz);
 
 }
