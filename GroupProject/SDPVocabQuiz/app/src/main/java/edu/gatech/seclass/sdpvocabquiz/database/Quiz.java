@@ -16,16 +16,8 @@ public class Quiz {
     public String name;
     public String description;
     public ArrayList<String> incorrectDefinitions = new ArrayList<>();
-    //public ArrayList<Word> wordList = new ArrayList<>();
 
     public int studentId;
-
-    public Quiz(String name, String description, ArrayList<Word> wordList, ArrayList<String> incorrectDefinitions) {
-        this.name = name;
-        this.description = description;
-        this.incorrectDefinitions.addAll(incorrectDefinitions);
-        //this.wordList.addAll(wordList);
-    }
 
     public Quiz(String name, String description, ArrayList<String> incorrectDefinitions, int studentId) {
         this.name = name;
