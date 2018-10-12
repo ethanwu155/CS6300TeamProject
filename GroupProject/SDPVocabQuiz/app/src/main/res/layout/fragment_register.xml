@@ -63,6 +63,8 @@
         android:id="@+id/senioritySpinner"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        tools:listitem="@layout/support_simple_spinner_dropdown_item"
+        android:entries="@array/Seniority"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

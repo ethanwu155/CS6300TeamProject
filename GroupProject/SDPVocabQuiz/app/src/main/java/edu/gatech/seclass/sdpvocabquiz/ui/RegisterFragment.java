@@ -7,8 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
+import edu.gatech.seclass.sdpvocabquiz.database.Student;
+import edu.gatech.seclass.sdpvocabquiz.database.Student.SeniorityLevel;
 
 public class RegisterFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -57,7 +62,11 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
+
+        Spinner spinner = view.findViewById(R.id.senioritySpinner);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

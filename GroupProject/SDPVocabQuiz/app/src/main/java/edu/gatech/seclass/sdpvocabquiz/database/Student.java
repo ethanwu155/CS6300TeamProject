@@ -36,6 +36,16 @@ public class Student {
         SeniorityLevel(int value) {
             this.value = value;
         }
+
+        private String name;
+
+        private SeniorityLevel(String name){
+            this.name = name;
+        }
+
+        @Override public String toString(){
+            return name;
+        }
     }
 
 }

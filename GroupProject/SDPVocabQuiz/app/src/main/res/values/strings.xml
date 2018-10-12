@@ -3,4 +3,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Freshman">Freshman</string>
+    <string name="Sophomore">Sophomore</string>
+    <string name="Junior">Junior</string>
+    <string name="Senior">Senior</string>
+
+    <string-array name="Seniority">
+    <item>@string/Freshman</item>
+    <item>@string/Sophomore</item>
+    <item>@string/Junior</item>
+    <item>@string/Senior</item>
+</string-array>
 </resources>

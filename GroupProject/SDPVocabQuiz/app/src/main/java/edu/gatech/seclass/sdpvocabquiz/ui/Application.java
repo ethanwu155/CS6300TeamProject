@@ -39,7 +39,7 @@ public class Application extends AppCompatActivity implements
 
     }
     public Application() {
-
+        this.db = AppDatabase.getInMemoryDatabase(this);
     }
     public Application(Context context) {
         this.db = AppDatabase.getInMemoryDatabase(context);
