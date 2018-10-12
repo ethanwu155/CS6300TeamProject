@@ -16,10 +16,23 @@ public class Question {
         this.correctDefinition = correctDefinition;
     }
 
+    public String getWord() {
+        return word;
+    }
+
+    public ArrayList<String> getDefinitions() {
+        return definitions;
+    }
+
+    public String getCorrectDefinition() {
+        return correctDefinition;
+    }
+
     public boolean answerQuestion(String definition) {
         if (definition.equals(this.correctDefinition)) {
             return true;
         }
+
         return false;
     }
 

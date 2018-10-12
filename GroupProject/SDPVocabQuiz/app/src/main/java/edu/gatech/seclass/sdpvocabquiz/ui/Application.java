@@ -1,5 +1,6 @@
 package edu.gatech.seclass.sdpvocabquiz.ui;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,15 +21,18 @@ import edu.gatech.seclass.sdpvocabquiz.database.Student;
 
 public class Application extends AppCompatActivity implements
         AddQuizFragment.OnQuizAddedListener,
-        QuizListFragment.OnQuizSelectedListener {
+        QuizListFragment.OnQuizSelectedListener,
+        QuizPracticeFragment.OnQuizCompletedListener {
 
     public String currentUser = null;
+    public int currentUserID = -1;
     private AppDatabase db;
 
     private List<Student> studentList = new ArrayList<>();
     private List<Quiz> quizList = new ArrayList<>();  //TODO: replace this when DB is working
     private Map<String, List<QuizEvent>> quizHistory = new HashMap<>();
     public Quiz currentQuiz;
+    public QuizEvent currentQuizEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,12 @@ public class Application extends AppCompatActivity implements
             this.currentUser = currentUser;
         }
 
-        this.db = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        this.db = AppDatabase.getDatabaseInstance(getApplicationContext());
+        List<Student> studentList = db.studentDao().getStudentByUsername(currentUser);
+        if(studentList.size() > 0) {
+            Student student = studentList.get(0);
+            currentUserID = student.getId();
+        }
         showQuizListFragment();
     }
 
@@ -70,6 +79,9 @@ public class Application extends AppCompatActivity implements
         return false;
     }
 
+    public QuizEvent getCurrentQuizEvent() {
+        return currentQuizEvent;
+    }
 
     private void showQuizListFragment() {
         getSupportFragmentManager().beginTransaction()
@@ -94,37 +106,34 @@ public class Application extends AppCompatActivity implements
     }
 
     public void addQuiz(Quiz quiz) {
-        //TODO: this is not working right now, some kind of foreign key error
-        displayDBError();
         quizList.add(quiz);
         showQuizListFragment();
 
-        /*if(db != null) {
-            //db.quizDao().addQuiz(quiz);
+        if(db != null) {
+            db.quizDao().addQuiz(quiz);
+        } else {
+            displayDBError();
 
         }
-        displayDBError();*/
     }
 
     public void removeQuiz(Quiz quiz) {
         if(db != null) {
             db.quizDao().deleteQuiz(quiz);
+        } else {
+            displayDBError();
         }
-        displayDBError();
 
     }
 
     public List<Quiz> getQuizList() {
 
         //TODO: DB is not working yet, just use the List<Quiz>
-        /*if(db != null) {
+        if(db != null) {
             return db.quizDao().getAllQuizzes();
         }
         displayDBError();
-        return null;*/
-
-        displayDBError();
-        return quizList;
+        return null;
     }
 
     public Map<String, List<QuizEvent>> getQuizScoresByStudent(String username) {
@@ -167,6 +176,12 @@ public class Application extends AppCompatActivity implements
 
     @Override
     public void onQuizSelected(Quiz quiz) {
+        currentQuizEvent = new QuizEvent(currentUser, quiz.getName(), getApplicationContext());
         showPracticeQuizFragment(quiz);
+    }
+
+    @Override
+    public void onQuizCompleted(Uri uri) {
+
     }
 }

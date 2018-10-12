@@ -27,10 +27,11 @@ public class Quiz {
         //this.wordList.addAll(wordList);
     }
 
-    public Quiz(String name, String description, ArrayList<String> incorrectDefinitions) {
+    public Quiz(String name, String description, ArrayList<String> incorrectDefinitions, int studentId) {
         this.name = name;
         this.description = description;
         this.incorrectDefinitions.addAll(incorrectDefinitions);
+        this.studentId = studentId;
     }
 
     public String getName() {

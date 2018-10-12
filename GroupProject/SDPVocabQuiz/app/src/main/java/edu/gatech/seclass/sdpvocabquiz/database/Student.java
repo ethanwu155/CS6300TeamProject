@@ -29,6 +29,10 @@ public class Student {
         this.emailAddress = emailAddress;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public enum SeniorityLevel {
         FRESHMAN(0),
         SOPHOMORE(1),

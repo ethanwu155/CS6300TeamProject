@@ -17,10 +17,10 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract StudentDao studentDao();
     public abstract WordDao wordDao();
 
-    public static AppDatabase getInMemoryDatabase(Context context) {
+    public static AppDatabase getDatabaseInstance(Context context) {
         if (INSTANCE == null) {
             INSTANCE =
-                    Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
+                    Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "sdpvocabquizdb")
                     .allowMainThreadQueries()
                     .build();
         }

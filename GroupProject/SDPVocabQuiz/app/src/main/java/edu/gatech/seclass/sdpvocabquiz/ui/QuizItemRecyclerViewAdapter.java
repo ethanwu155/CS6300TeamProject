@@ -33,7 +33,7 @@ public class QuizItemRecyclerViewAdapter extends RecyclerView.Adapter<QuizItemRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mQuizzes.get(position);
         holder.mNameView.setText(mQuizzes.get(position).getName());
-        holder.mDescriptionView.setText(mQuizzes.get(position).getDescription());
+        //holder.mDescriptionView.setText(mQuizzes.get(position).getDescription());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,19 +53,20 @@ public class QuizItemRecyclerViewAdapter extends RecyclerView.Adapter<QuizItemRe
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mNameView;
-        public final TextView mDescriptionView;
+        //public final TextView mDescriptionView;
         public Quiz mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mNameView =  view.findViewById(R.id.name);
-            mDescriptionView = view.findViewById(R.id.description);
+            //mDescriptionView = view.findViewById(R.id.description);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mDescriptionView.getText() + "'";
+            //return super.toString() + " '" + mDescriptionView.getText() + "'";
+            return super.toString() + " '";
         }
     }
 }
