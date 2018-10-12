@@ -82,7 +82,7 @@ public class AddQuizFragment extends Fragment {
                 int studentID = ((Application)getActivity()).currentUserID;
                 Quiz quiz = new Quiz(name, description, badDefinitionList, studentID);
                 if (mListener != null) {
-                    mListener.onQuizAdded(quiz);
+                    mListener.onQuizAdded(quiz, wordList);
                 }
             }
         });
@@ -158,17 +158,11 @@ public class AddQuizFragment extends Fragment {
     public void addNewWord(String word, String definition) {
         wordList.add(new Word(word, definition, -1)); //TODO: where does Quiz ID come from?
         addTextView(word + ": " + definition, "new_word");
-        Toast.makeText(getActivity(),
-                "Number of Words " + String.valueOf(wordList.size()),
-                Toast.LENGTH_SHORT).show();
     }
 
     public void addNewDefinition(String definition) {
         badDefinitionList.add(definition);
         addTextView(definition, "new_def");
-        Toast.makeText(getActivity(),
-                "Number of Defs" + String.valueOf(badDefinitionList.size()),
-                Toast.LENGTH_SHORT).show();
     }
 
     public void addTextView(String text, String list) {
@@ -191,7 +185,7 @@ public class AddQuizFragment extends Fragment {
     }
 
     public interface OnQuizAddedListener {
-        void onQuizAdded(Quiz quiz);
+        void onQuizAdded(Quiz quiz, List<Word> wordList);
     }
 
 }

@@ -16,6 +16,27 @@ public class Word {
     public String definition;
     public int quizId;
 
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
+    }
+
+    public int getId() {
+
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDefinition() {
+        return definition;
+    }
+
+    public int getQuizId() {
+        return quizId;
+    }
+
     public Word(String name, String definition, int quizId) {
         this.name = name;
         this.definition = definition;

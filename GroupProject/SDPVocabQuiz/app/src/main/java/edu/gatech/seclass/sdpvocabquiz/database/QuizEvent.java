@@ -48,11 +48,21 @@ public class QuizEvent {
         return null;
     }
 
-    public void gradeQuestion(String definition) {
-        boolean correct = this.currentQuestion.answerQuestion(definition);
-        if (correct) {
+    public int getTotalCorrect() {
+        return totalCorrect;
+    }
+
+    public int getNumQuestions() {
+        return questions.size();
+    }
+
+    public boolean gradeQuestion(String definition) {
+        boolean isCorrect = this.currentQuestion.answerQuestion(definition);
+        if (isCorrect) {
             this.totalCorrect++;
         }
+
+        return isCorrect;
     }
 
     public QuizScore gradeQuiz() {

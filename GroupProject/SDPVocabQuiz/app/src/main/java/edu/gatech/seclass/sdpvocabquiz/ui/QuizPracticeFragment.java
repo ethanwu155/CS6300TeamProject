@@ -1,9 +1,11 @@
 package edu.gatech.seclass.sdpvocabquiz.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +37,8 @@ public class QuizPracticeFragment extends Fragment {
     private Button confirmButton;
     SelectableCardView a1, a2, a3, a4;
     TextView textViewA1, textViewA2, textViewA3, textViewA4, word;
-    private int mCurrentQuestionIndex;
     private Question mCurrentQuestion;
+    private boolean quizCompleted = false;
 
     public QuizPracticeFragment() {
         // Required empty public constructor
@@ -97,6 +99,7 @@ public class QuizPracticeFragment extends Fragment {
         a2.setOnClickListener(answerListener);
         a3.setOnClickListener(answerListener);
         a4.setOnClickListener(answerListener);
+        confirmButton.setOnClickListener(answerListener);
 
         initialize();
 
@@ -105,17 +108,18 @@ public class QuizPracticeFragment extends Fragment {
 
     private void initialize() {
         quizEvent = app.getCurrentQuizEvent();
-
-        mCurrentQuestionIndex = 1;
-        mCurrentQuestion = quizEvent.getNextQuestion();
-
-        updateUI();
-
+        if (quizEvent.getNumQuestions() == 0) {
+            if (mListener != null) {
+                mListener.onQuizLoadError();
+            }
+        } else {
+            onQuestionCompleted();
+        }
     }
 
     private void updateUI() {
-        if(mCurrentQuestion ==null) {
-            app.displayDBError();
+        if(mCurrentQuestion == null) {
+            //app.displayDBError();
             return;
         }
         word.setText(mCurrentQuestion.word);
@@ -139,7 +143,47 @@ public class QuizPracticeFragment extends Fragment {
             answerIndex = 3;
         }
 
-        quizEvent.gradeQuestion(mCurrentQuestion.getDefinitions().get(answerIndex));
+        boolean isCorrect = quizEvent.gradeQuestion(mCurrentQuestion.getDefinitions().get(answerIndex));
+        displayResult(isCorrect);
+    }
+
+    private void displayResult(boolean isCorrect) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        String message = String.format("%d out of %d correct", quizEvent.getTotalCorrect(), quizEvent.getNumQuestions());
+        builder.setMessage(message);
+
+        if(isCorrect) {
+            builder.setTitle("Correct!");
+        } else {
+            builder.setTitle("Incorrect");
+        }
+
+        builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+                onQuestionCompleted();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+
+    }
+
+    private void onQuestionCompleted() {
+        mCurrentQuestion = quizEvent.getNextQuestion();
+        if(mCurrentQuestion == null) {
+            if (mListener != null) {
+                mListener.onQuizCompleted();
+            }
+        }
+        a1.setChecked(false);
+        a2.setChecked(false);
+        a3.setChecked(false);
+        a4.setChecked(false);
+        updateUI();
     }
 
     private void selectAnswer(int answer) {
@@ -147,11 +191,6 @@ public class QuizPracticeFragment extends Fragment {
         a2.setChecked(answer == 2);
         a3.setChecked(answer == 3);
         a4.setChecked(answer == 4);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-
     }
 
     @Override
@@ -172,6 +211,7 @@ public class QuizPracticeFragment extends Fragment {
     }
 
     public interface OnQuizCompletedListener {
-        void onQuizCompleted(Uri uri);
+        void onQuizCompleted();
+        void onQuizLoadError();
     }
 }

@@ -9,6 +9,14 @@ public class QuizWithWords {
     @Embedded
     public Quiz quiz;
 
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public List<Word> getWords() {
+        return words;
+    }
+
     @Relation(parentColumn = "id", entityColumn = "quizId", entity = Word.class)
     public List<Word> words;
 }

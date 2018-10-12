@@ -17,7 +17,9 @@ import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.AppDatabase;
 import edu.gatech.seclass.sdpvocabquiz.database.Quiz;
 import edu.gatech.seclass.sdpvocabquiz.database.QuizEvent;
+import edu.gatech.seclass.sdpvocabquiz.database.QuizWithWords;
 import edu.gatech.seclass.sdpvocabquiz.database.Student;
+import edu.gatech.seclass.sdpvocabquiz.database.Word;
 
 public class Application extends AppCompatActivity implements
         AddQuizFragment.OnQuizAddedListener,
@@ -105,16 +107,20 @@ public class Application extends AppCompatActivity implements
 
     }
 
-    public void addQuiz(Quiz quiz) {
+    public int addQuiz(Quiz quiz) {
         quizList.add(quiz);
         showQuizListFragment();
 
         if(db != null) {
             db.quizDao().addQuiz(quiz);
-        } else {
-            displayDBError();
-
+            List<QuizWithWords> quizList = db.quizDao().getQuizWithWordsByName(quiz.getName());
+            if(quizList.size() > 0) {
+                return quizList.get(0).getQuiz().getId();
+            }
         }
+
+        displayDBError();
+        return -1;
     }
 
     public void removeQuiz(Quiz quiz) {
@@ -169,8 +175,12 @@ public class Application extends AppCompatActivity implements
 
 
     @Override
-    public void onQuizAdded(Quiz quiz) {
-        addQuiz(quiz);
+    public void onQuizAdded(Quiz quiz, List<Word> wordList) {
+        int quizID = addQuiz(quiz);
+        for (Word word : wordList) {
+            word.setQuizId(quizID);
+            db.wordDao().addWord(word);
+        }
         showQuizListFragment();
     }
 
@@ -181,7 +191,14 @@ public class Application extends AppCompatActivity implements
     }
 
     @Override
-    public void onQuizCompleted(Uri uri) {
+    public void onQuizCompleted() {
+        Toast.makeText(getApplicationContext(), "Quiz Completed and Logged in DB", Toast.LENGTH_SHORT).show();
+        showQuizListFragment();
+    }
 
+    @Override
+    public void onQuizLoadError() {
+        Toast.makeText(getApplicationContext(), "The Quiz has no defined words, can't practice!", Toast.LENGTH_SHORT).show();
+        showQuizListFragment();
     }
 }

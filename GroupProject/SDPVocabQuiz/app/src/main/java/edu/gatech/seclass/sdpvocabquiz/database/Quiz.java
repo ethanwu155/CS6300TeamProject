@@ -20,6 +20,10 @@ public class Quiz {
 
     public int studentId;
 
+    public int getId() {
+        return id;
+    }
+
     public Quiz(String name, String description, ArrayList<Word> wordList, ArrayList<String> incorrectDefinitions) {
         this.name = name;
         this.description = description;
