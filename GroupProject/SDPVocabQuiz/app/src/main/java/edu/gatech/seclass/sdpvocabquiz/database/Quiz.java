@@ -10,7 +10,7 @@ import java.util.ArrayList;
             parentColumns = "id",
             childColumns = "studentId")})
 public class Quiz {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     public String name;

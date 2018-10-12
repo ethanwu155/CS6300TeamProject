@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
             parentColumns = "id",
             childColumns = "quizId")})
 public class Word {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     public String name;

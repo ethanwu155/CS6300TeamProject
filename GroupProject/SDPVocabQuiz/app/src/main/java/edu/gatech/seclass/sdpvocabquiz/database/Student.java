@@ -6,7 +6,7 @@ import android.arch.persistence.room.TypeConverters;
 
 @Entity
 public class Student {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     public String fullName;

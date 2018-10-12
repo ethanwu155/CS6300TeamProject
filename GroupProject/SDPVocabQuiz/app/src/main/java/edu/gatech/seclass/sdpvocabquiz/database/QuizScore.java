@@ -16,7 +16,7 @@ import java.util.Date;
             childColumns = "quizId")})
 public class QuizScore {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     public float finalScore;
