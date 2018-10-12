@@ -17,6 +17,10 @@ public class Student {
     public SeniorityLevel seniorityLevel;
     public String emailAddress;
 
+    public Student(String username, String email, String major, SeniorityLevel level) {
+        this("", username, major, level, email);
+    }
+
     public Student(String fullName, String username, String major, SeniorityLevel seniorityLevel, String emailAddress) {
         this.fullName = fullName;
         this.username = username;

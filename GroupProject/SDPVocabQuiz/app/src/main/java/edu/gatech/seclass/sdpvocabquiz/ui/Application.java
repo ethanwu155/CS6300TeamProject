@@ -1,9 +1,13 @@
 package edu.gatech.seclass.sdpvocabquiz.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+import java.util.List;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.AppDatabase;
@@ -22,6 +26,8 @@ public class Application extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.db = AppDatabase.getInMemoryDatabase(getApplicationContext());
+
         showLoginFragment();
     }
 
@@ -39,24 +45,46 @@ public class Application extends AppCompatActivity implements
 
     }
     public Application() {
-        this.db = AppDatabase.getInMemoryDatabase(this);
     }
     public Application(Context context) {
         this.db = AppDatabase.getInMemoryDatabase(context);
     }
 
     public void login(String username) {
-        this.currentUser = username;
+        if(db == null) {
+            displayLoginFailed();
+            return;
+        }
+        List<Student> studentList = db.studentDao().getStudentByUsername(username);
+        if (studentList.size() > 0) {
+            this.currentUser = username;
+            loadQuizActivity();
+        } else {
+            displayLoginFailed();
+        }
+
+    }
+
+    private void loadQuizActivity() {
+        Intent i = new Intent(this, QuizActivity.class);
+        Bundle b = new Bundle();
+        b.putString("currentUser", currentUser);
+        i.putExtras(b);
+        startActivity(i);
     }
 
     public void logout() {
         this.currentUser = null;
     }
 
-    public void registerNewStudent(String fullName, String username, String major, Student.SeniorityLevel seniorityLevel, String email) {
-        Student student = new Student(fullName, username, major, seniorityLevel, email);
+    public void registerNewStudent(Student student) {
         db.studentDao().registerNewStudent(student);
-        this.currentUser = username;
+        this.currentUser = student.username;
+        loadQuizActivity();
+    }
+
+    public void displayLoginFailed() {
+        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -70,7 +98,7 @@ public class Application extends AppCompatActivity implements
     }
 
     @Override
-    public void onRegistered(Uri uri) {
-
+    public void onRegistered(Student student) {
+        registerNewStudent(student);
     }
 }

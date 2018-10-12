@@ -3,11 +3,13 @@ package edu.gatech.seclass.sdpvocabquiz.ui;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
@@ -26,6 +28,10 @@ public class RegisterFragment extends Fragment {
     private String mParam2;
 
     private OnRegisterListener mListener;
+    Button registerButton;
+    TextInputLayout email, major, username;
+    Spinner spinner;
+
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -64,16 +70,30 @@ public class RegisterFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-        Spinner spinner = view.findViewById(R.id.senioritySpinner);
+        spinner = view.findViewById(R.id.senioritySpinner);
+        email = view.findViewById(R.id.emailTextInput);
+        username = view.findViewById(R.id.userTextInput);
+        major = view.findViewById(R.id.majorTextInput);
+
+        registerButton = view.findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String majorString = major.getEditText().getText().toString();
+                String usernameString = username.getEditText().getText().toString();
+                String emailString = email.getEditText().getText().toString();
+                String seniorityString = spinner.getSelectedItem().toString().toUpperCase();
+                Student student = new Student(usernameString, emailString, majorString, SeniorityLevel.valueOf(seniorityString));
+
+                if (mListener != null) {
+                    mListener.onRegistered(student);
+                }
+
+
+            }
+        });
 
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onRegistered(uri);
-        }
     }
 
     @Override
@@ -104,6 +124,6 @@ public class RegisterFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnRegisterListener {
-        void onRegistered(Uri uri);
+        void onRegistered(Student student);
     }
 }
