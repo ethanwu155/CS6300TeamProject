@@ -15,7 +15,7 @@ public class QuizEvent {
     private AppDatabase db;
 
     public QuizEvent(String studentName, String quizName, Context context) {
-        this.db = AppDatabase.getInMemoryDatabase(context);
+        this.db = AppDatabase.getDatabaseInstance(context);
         this.student = this.db.studentDao().getStudentByUsername(studentName).get(0);
         this.quizWithWords = this.db.quizDao().getQuizWithWordsByName(quizName).get(0);
 

@@ -42,7 +42,7 @@ public class Application extends AppCompatActivity implements AddQuizFragment.On
             this.currentUser = currentUser;
         }
 
-        this.db = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        this.db = AppDatabase.getDatabaseInstance(getApplicationContext());
         showQuizListFragment();
     }
 

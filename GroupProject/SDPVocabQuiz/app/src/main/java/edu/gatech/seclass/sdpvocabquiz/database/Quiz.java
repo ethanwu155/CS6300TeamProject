@@ -19,10 +19,11 @@ public class Quiz {
 
     public int studentId;
 
-    public Quiz(String name, String description, ArrayList<String> incorrectDefinitions) {
+    public Quiz(String name, String description, ArrayList<String> incorrectDefinitions, int studentId) {
         this.name = name;
         this.description = description;
         this.incorrectDefinitions.addAll(incorrectDefinitions);
+        this.studentId = studentId;
     }
 
 }

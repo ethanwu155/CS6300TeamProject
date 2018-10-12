@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.db = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        this.db = AppDatabase.getDatabaseInstance(getApplicationContext());
 
         showLoginFragment();
     }
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements
     public LoginActivity() {
     }
     public LoginActivity(Context context) {
-        this.db = AppDatabase.getInMemoryDatabase(context);
+        this.db = AppDatabase.getDatabaseInstance(context);
     }
 
     public void login(String username) {

@@ -16,9 +16,10 @@ public class Word {
     public String definition;
     public int quizId;
 
-    public Word(String name, String definition) {
+    public Word(String name, String definition, int quizId) {
         this.name = name;
         this.definition = definition;
+        this.quizId = quizId;
     }
 
 }
