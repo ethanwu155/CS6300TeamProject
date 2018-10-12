@@ -55,12 +55,16 @@ public class LoginActivity extends AppCompatActivity implements
             return;
         }
         List<Student> studentList = db.studentDao().getStudentByUsername(username);
-        if (studentList.size() > 0) {
+
+        //BYPASS THIS FOR TESTING
+        /*if (studentList.size() > 0) {
             this.currentUser = username;
             loadQuizActivity();
         } else {
             displayLoginFailed();
-        }
+        }*/
+        this.currentUser = username;
+        loadQuizActivity();
 
     }
 

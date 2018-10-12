@@ -1,28 +1,32 @@
 package edu.gatech.seclass.sdpvocabquiz.ui;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.Quiz;
+import edu.gatech.seclass.sdpvocabquiz.database.Word;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AddQuizFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AddQuizFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddQuizFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,30 +37,17 @@ public class AddQuizFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Button addButton;
+    Button addButton, addWordButton, addBadDefButton;
+    ArrayList<Word> wordList = new ArrayList<>();
+    ArrayList<String> wordListDisplay = new ArrayList<>();
+    ArrayList<String> badDefinitionList = new ArrayList<>();
+    LinearLayout newWordLayout, newDefLayout;
+    TextInputLayout quizName, quizDescription;
 
     private OnQuizAddedListener mListener;
 
     public AddQuizFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddQuizFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddQuizFragment newInstance(String param1, String param2) {
-        AddQuizFragment fragment = new AddQuizFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -75,17 +66,76 @@ public class AddQuizFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_quiz, container, false);
 
         addButton = view.findViewById(R.id.addButton);
+        addWordButton = view.findViewById(R.id.addWordButton);
+        addBadDefButton = view.findViewById(R.id.addBadDefButton);
+        newWordLayout = view.findViewById(R.id.wordsLayout);
+        newDefLayout = view.findViewById(R.id.badDefsLayout);
+        quizName = view.findViewById(R.id.textInputLayoutQuizName);
+        quizDescription = view.findViewById(R.id.textInputLayoutQuizDescription);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = "";
-                String description = "";
-                ArrayList<String> incorrectDefinitions = new ArrayList<>();
-                Quiz quiz = new Quiz(name, description, incorrectDefinitions);
+                String name = quizName.getEditText().getText().toString();
+                String description = quizDescription.getEditText().getText().toString();
+                //Quiz quiz = new Quiz(name, description, wordList, badDefinitionList);  //TODO: the DB needs to be updated
+                Quiz quiz = new Quiz(name, description, badDefinitionList);
                 if (mListener != null) {
                     mListener.onQuizAdded(quiz);
                 }
+            }
+        });
+
+        addWordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.new_word_layout);
+                final EditText newWordEditText = dialog.findViewById(R.id.newWord);
+                final EditText definitionEditText = dialog.findViewById(R.id.definition);
+                final Button cancelButton = dialog.findViewById(R.id.cancelButton);
+                final Button addButton = dialog.findViewById(R.id.addButton);
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String newWord = newWordEditText.getText().toString();
+                        String definition = definitionEditText.getText().toString();
+                        addNewWord(newWord, definition);
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+        addBadDefButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.new_definition_layout);
+                final EditText definitionEditText = dialog.findViewById(R.id.definition);
+                final Button cancelButton = dialog.findViewById(R.id.cancelButton);
+                final Button addButton = dialog.findViewById(R.id.addButton);
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String definition = definitionEditText.getText().toString();
+                        addNewDefinition(definition);
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
 
@@ -104,24 +154,43 @@ public class AddQuizFragment extends Fragment {
         }
     }
 
+    public void addNewWord(String word, String definition) {
+        wordList.add(new Word(word, definition));
+        addTextView(word + ": " + definition, "new_word");
+        Toast.makeText(getActivity(),
+                "Number of Words " + String.valueOf(wordList.size()),
+                Toast.LENGTH_SHORT).show();
+    }
+
+    public void addNewDefinition(String definition) {
+        badDefinitionList.add(definition);
+        addTextView(definition, "new_def");
+        Toast.makeText(getActivity(),
+                "Number of Defs" + String.valueOf(badDefinitionList.size()),
+                Toast.LENGTH_SHORT).show();
+    }
+
+    public void addTextView(String text, String list) {
+        TextView newTextView = new TextView(getActivity());
+        newTextView.setText(text);
+        newTextView.setLayoutParams((new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT)));
+
+        if(list.equals("new_word")) {
+            newWordLayout.addView(newTextView);
+        } else if (list.equals("new_def")) {
+            newDefLayout.addView(newTextView);
+        }
+    }
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnQuizAddedListener {
-        // TODO: Update argument type and name
         void onQuizAdded(Quiz quiz);
     }
+
 }

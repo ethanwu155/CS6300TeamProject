@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,11 +10,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayoutQuizName"
-        android:layout_width="250dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="20dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -25,11 +25,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayoutQuizDescription"
-        android:layout_width="250dp"
-        android:layout_margin="20dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutQuizName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -39,66 +38,67 @@
             android:hint="Quiz Description" />
     </android.support.design.widget.TextInputLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1">
+
+    <Button
+        android:id="@+id/addWordButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:text="Add Word"
+        app:layout_constraintEnd_toStartOf="@+id/addBadDefButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutQuizDescription" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="match_parent">
+        android:id="@+id/wordsLayout"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        app:layout_constraintEnd_toStartOf="@+id/badDefsLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addWordButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".4" />
 
-        <LinearLayout
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:orientation="vertical"
-            android:layout_weight="1">
+    <Button
+        android:id="@+id/addBadDefButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Add Bad Definition"
+        app:layout_constraintStart_toEndOf="@+id/addWordButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutQuizDescription" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content"
-                android:text="Add Word"/>
-
-            <ListView
-                android:id="@+id/wordsListView"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="0dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content"
-                android:text="Add Bad Definition"/>
-
-            <ListView
-                android:id="@+id/badDefsListView"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    </ScrollView>
+    <LinearLayout
+        android:id="@+id/badDefsLayout"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".4"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/wordsLayout"
+        app:layout_constraintTop_toBottomOf="@+id/addBadDefButton"/>
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:text="Add" />
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
