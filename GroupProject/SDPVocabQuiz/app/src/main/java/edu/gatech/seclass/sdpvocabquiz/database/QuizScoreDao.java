@@ -1,6 +1,5 @@
 package edu.gatech.seclass.sdpvocabquiz.database;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -12,7 +11,7 @@ import java.util.List;
 public interface QuizScoreDao {
 
     @Query("SELECT * FROM QuizScore")
-    LiveData<List<QuizScore>> getAllQuizScores();
+    List<QuizScore> getAllQuizScores();
 
     @Insert
     void addQuizScore(QuizScore quizScore);
@@ -25,7 +24,7 @@ public interface QuizScoreDao {
             "INNER JOIN QuizScore on QuizScore.quizId = Quiz.id " +
             "WHERE Student.username LIKE :username " +
             "ORDER BY QuizScore.timestamp DESC ")
-    LiveData<List<String>> getQuizzesByStudent(String username);
+    List<String> getQuizzesByStudent(String username);
 
     @Query("SELECT * FROM QuizScore " +
             "INNER JOIN Student ON Student.id = QuizScore.studentId " +
@@ -33,7 +32,7 @@ public interface QuizScoreDao {
             "WHERE Student.username LIKE :username AND Quiz.name LIKE :quizName " +
             "ORDER BY QuizScore.timestamp DESC " +
             "LIMIT 1")
-    LiveData<List<QuizScore>> getFirstScoreByStudentQuiz(String username, String quizName);
+    List<QuizScore> getFirstScoreByStudentQuiz(String username, String quizName);
 
     @Query("SELECT * FROM QuizScore " +
             "INNER JOIN Student ON Student.id = QuizScore.studentId " +
@@ -41,7 +40,7 @@ public interface QuizScoreDao {
             "WHERE Student.username LIKE :username AND Quiz.name LIKE :quizName " +
             "ORDER BY QuizScore.finalScore DESC " +
             "LIMIT 1")
-    LiveData<List<QuizScore>> getHighestScoreByStudentQuiz(String username, String quizName);
+    List<QuizScore> getHighestScoreByStudentQuiz(String username, String quizName);
 
     @Query("SELECT Student.username FROM Student " +
             "INNER JOIN QuizScore ON QuizScore.studentId = Student.id " +
@@ -49,6 +48,6 @@ public interface QuizScoreDao {
             "WHERE Quiz.name LIKE :name AND QuizScore.finalScore = 100 " +
             "ORDER BY QuizScore.timestamp DESC " +
             "LIMIT 3")
-    LiveData<List<String>> getFirstThreeStudentHundredsByQuizName(String name);
+    List<String> getFirstThreeStudentHundredsByQuizName(String name);
 
 }
