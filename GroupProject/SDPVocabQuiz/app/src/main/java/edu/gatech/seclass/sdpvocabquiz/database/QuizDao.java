@@ -13,13 +13,18 @@ public interface QuizDao {
     @Query("SELECT * FROM Quiz")
     List<Quiz> getAllQuizzes();
 
-    @Query("SELECT * FROM Quiz")
+    @Query("SELECT * FROM Quiz " +
+            "INNER JOIN Word ON Word.quizId = Quiz.id")
     List<QuizWithWords> getAllQuizzesWithWords();
 
-    @Query("SELECT * FROM Quiz WHERE Quiz.id = :id")
+    @Query("SELECT * FROM Quiz " +
+            "INNER JOIN Word ON Word.quizId = Quiz.id " +
+            "WHERE Quiz.id = :id")
     List<QuizWithWords> getQuizWithWordsById(int id);
 
-    @Query("SELECT * FROM Quiz WHERE Quiz.name LIKE :name")
+    @Query("SELECT * FROM Quiz " +
+            "INNER JOIN Word ON Word.quizId = Quiz.id " +
+            "WHERE Quiz.name LIKE :name")
     List<QuizWithWords> getQuizWithWordsByName(String name);
 
     @Query("SELECT * FROM Quiz WHERE Quiz.studentId = :studentId")
