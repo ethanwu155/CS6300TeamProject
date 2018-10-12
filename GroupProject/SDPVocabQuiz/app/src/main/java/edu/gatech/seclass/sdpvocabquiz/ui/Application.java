@@ -1,104 +1,125 @@
 package edu.gatech.seclass.sdpvocabquiz.ui;
 
-import android.content.Context;
+import android.arch.lifecycle.LiveData;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.AppDatabase;
+import edu.gatech.seclass.sdpvocabquiz.database.Quiz;
+import edu.gatech.seclass.sdpvocabquiz.database.QuizEvent;
 import edu.gatech.seclass.sdpvocabquiz.database.Student;
 
-public class Application extends AppCompatActivity implements
-        LoginFragment.OnLoginListener,
-        RegisterFragment.OnRegisterListener {
+public class Application extends AppCompatActivity {
 
-    private String currentUser = null;
+    public String currentUser = null;
     private AppDatabase db;
 
+    private List<Student> studentList = new ArrayList<>();
+    private List<Quiz> quizList = new ArrayList<>();
+    private Map<String, List<QuizEvent>> quizHistory = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_quiz);
 
-        this.db = AppDatabase.getInMemoryDatabase(getApplicationContext());
-
-        showLoginFragment();
-    }
-
-    private void showLoginFragment() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrameLayout, new LoginFragment(), "LOGIN")
-                .commit();
-
-    }
-
-    private void showRegistrationFragment() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrameLayout, new RegisterFragment(), "REGISTRATION")
-                .commit();
-
-    }
-    public Application() {
-    }
-    public Application(Context context) {
-        this.db = AppDatabase.getInMemoryDatabase(context);
-    }
-
-    public void login(String username) {
-        if(db == null) {
-            displayLoginFailed();
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
             return;
         }
-        List<Student> studentList = db.studentDao().getStudentByUsername(username);
-        if (studentList.size() > 0) {
-            this.currentUser = username;
-            loadQuizActivity();
-        } else {
-            displayLoginFailed();
+
+        String currentUser = extras.getString("currentUser");
+        if (currentUser != null) {
+            this.currentUser = currentUser;
         }
 
+        this.db = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        showQuizListFragment();
     }
 
-    private void loadQuizActivity() {
-        Intent i = new Intent(this, QuizActivity.class);
-        Bundle b = new Bundle();
-        b.putString("currentUser", currentUser);
-        i.putExtras(b);
-        startActivity(i);
+
+    private void showQuizListFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentFrameLayout, new QuizListFragment(), "QUIZ_LIST")
+                .commit();
+
     }
 
-    public void logout() {
-        this.currentUser = null;
+    private void showAddQuizFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentFrameLayout, new AddQuizFragment(), "ADD_QUIZ")
+                .commit();
+
     }
 
-    public void registerNewStudent(Student student) {
-        db.studentDao().registerNewStudent(student);
-        this.currentUser = student.username;
-        loadQuizActivity();
+    private void showPracticeQuizFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentFrameLayout, new QuizPracticeFragment(), "ADD_QUIZ")
+                .commit();
+
     }
 
-    public void displayLoginFailed() {
-        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+    public void addQuiz(Quiz quiz) {
+        if(db != null) {
+            db.quizDao().addQuiz(quiz);
+        }
+        displayDBError();
     }
 
-    @Override
-    public void onLogin(String username) {
-        login(username);
+    public void removeQuiz(String quizName) {
+        if(db != null) {
+            db.quizDao().deleteQuiz(quizName);
+        }
+        displayDBError();
+
     }
 
-    @Override
-    public void onRegisterRequested() {
-        showRegistrationFragment();
+    public List<Quiz> getQuizList() {
+        if(db != null) {
+            return db.quizDao().getAllQuizzes();
+        }
+        displayDBError();
+        return null;
     }
 
-    @Override
-    public void onRegistered(Student student) {
-        registerNewStudent(student);
+    public Map<String, List<QuizEvent>> getQuizScoresByStudent(String username) {
+
+        return null;
     }
+
+    public double getFirstScore(String quizName, String username) {
+
+        return 0;
+    }
+
+    public double getHighestScore(String quizName, String username) {
+
+        return 0;
+    }
+
+    public void practiceQuiz(String quizName) {
+
+    }
+
+    public List<QuizEvent> viewQuizScores(String quizName) {
+
+        return null;
+    }
+
+
+
+    public void displayDBError() {
+        Toast.makeText(getApplicationContext(),
+                "There was a problem with the DB", Toast.LENGTH_SHORT).show();
+    }
+
+
 }

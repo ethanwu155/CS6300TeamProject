@@ -3,14 +3,17 @@ package edu.gatech.seclass.sdpvocabquiz.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.List;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
+import edu.gatech.seclass.sdpvocabquiz.database.Quiz;
 import edu.gatech.seclass.sdpvocabquiz.dummy.DummyContent;
 import edu.gatech.seclass.sdpvocabquiz.dummy.DummyContent.DummyItem;
 
@@ -59,20 +62,17 @@ public class QuizListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new QuizItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
-        }
+        String currentUser = ((Application)getActivity()).currentUser;
+        ((TextView)view.findViewById(R.id.welcomeTextView)).setText("Welcome " + currentUser + "!");
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        Context context = view.getContext();
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        List<Quiz> quizList = ((Application)(getActivity())).getQuizList();
+        recyclerView.setAdapter(new QuizItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
