@@ -7,8 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
+import edu.gatech.seclass.sdpvocabquiz.database.Quiz;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +33,9 @@ public class AddQuizFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    Button addButton;
+
+    private OnQuizAddedListener mListener;
 
     public AddQuizFragment() {
         // Required empty public constructor
@@ -65,24 +72,35 @@ public class AddQuizFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_quiz, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_add_quiz, container, false);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        addButton = view.findViewById(R.id.addButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = "";
+                String description = "";
+                ArrayList<String> incorrectDefinitions = new ArrayList<>();
+                Quiz quiz = new Quiz(name, description, incorrectDefinitions);
+                if (mListener != null) {
+                    mListener.onQuizAdded(quiz);
+                }
+            }
+        });
+
+
+        return view;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnQuizAddedListener) {
+            mListener = (OnQuizAddedListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnQuizAddedListener");
         }
     }
 
@@ -102,8 +120,8 @@ public class AddQuizFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnQuizAddedListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onQuizAdded(Quiz quiz);
     }
 }

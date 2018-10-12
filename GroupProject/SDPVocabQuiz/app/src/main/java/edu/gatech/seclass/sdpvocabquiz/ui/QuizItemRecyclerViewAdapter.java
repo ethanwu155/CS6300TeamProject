@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
+import edu.gatech.seclass.sdpvocabquiz.database.Quiz;
 import edu.gatech.seclass.sdpvocabquiz.ui.QuizListFragment.OnListFragmentInteractionListener;
 import edu.gatech.seclass.sdpvocabquiz.dummy.DummyContent.DummyItem;
 
@@ -19,11 +20,11 @@ import java.util.List;
  */
 public class QuizItemRecyclerViewAdapter extends RecyclerView.Adapter<QuizItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Quiz> mQuizzes;
     private final OnListFragmentInteractionListener mListener;
 
-    public QuizItemRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
+    public QuizItemRecyclerViewAdapter(List<Quiz> items, OnListFragmentInteractionListener listener) {
+        mQuizzes = items;
         mListener = listener;
     }
 
@@ -36,9 +37,9 @@ public class QuizItemRecyclerViewAdapter extends RecyclerView.Adapter<QuizItemRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mItem = mQuizzes.get(position);
+        holder.mIdView.setText(mQuizzes.get(position).id);
+        holder.mContentView.setText(mQuizzes.get(position).name);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,14 +55,14 @@ public class QuizItemRecyclerViewAdapter extends RecyclerView.Adapter<QuizItemRe
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mQuizzes.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Quiz mItem;
 
         public ViewHolder(View view) {
             super(view);

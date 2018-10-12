@@ -1,9 +1,10 @@
 package edu.gatech.seclass.sdpvocabquiz.ui;
 
-import android.arch.lifecycle.LiveData;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import edu.gatech.seclass.sdpvocabquiz.database.Quiz;
 import edu.gatech.seclass.sdpvocabquiz.database.QuizEvent;
 import edu.gatech.seclass.sdpvocabquiz.database.Student;
 
-public class Application extends AppCompatActivity {
+public class Application extends AppCompatActivity implements AddQuizFragment.OnQuizAddedListener {
 
     public String currentUser = null;
     private AppDatabase db;
@@ -43,6 +44,27 @@ public class Application extends AppCompatActivity {
 
         this.db = AppDatabase.getInMemoryDatabase(getApplicationContext());
         showQuizListFragment();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.menu_add:
+                showAddQuizFragment();
+                return false;
+            default:
+                break;
+        }
+
+        return false;
     }
 
 
@@ -74,9 +96,9 @@ public class Application extends AppCompatActivity {
         displayDBError();
     }
 
-    public void removeQuiz(String quizName) {
+    public void removeQuiz(Quiz quiz) {
         if(db != null) {
-            db.quizDao().deleteQuiz(quizName);
+            db.quizDao().deleteQuiz(quiz);
         }
         displayDBError();
 
@@ -122,4 +144,9 @@ public class Application extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onQuizAdded(Quiz quiz) {
+        addQuiz(quiz);
+        showQuizListFragment();
+    }
 }
