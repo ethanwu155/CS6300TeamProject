@@ -33,7 +33,7 @@
 
 ### 3.1 Class Diagram
 
-![alt text](../Design-Team/Group%20Project%20D1%20-%20Updated.jpg)
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/development/GroupProject/Docs/pics/SDPVocab%20Class%20Diagram.png)
 
 ### 3.2 Other Diagrams
 
