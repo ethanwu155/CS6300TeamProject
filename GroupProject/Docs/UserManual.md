@@ -22,15 +22,23 @@ Any feedback on this project is much appreciated. Thank you for your time and en
 
 When you start up the application you will be met with the following Login Screen. If you have an account, simply enter username and press the `Login` Button.
 
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/Startup.PNG)
+
 New user's must register for an account. Simply do this by clicking the `Register` Button. This will bring you to the Registration Page.
 
-Registration process involves inserting the following information in the text fields: username, major and email. Additionally new users must select their seniority from the spinner object. Complete the Registration process by selecting `Register` and application will take user back to login page. 
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/Register.PNG)
+
+Registration process involves inserting the following information in the text fields: username, major and email. Additionally new users must select their seniority from the spinner object. Complete the Registration process by selecting `Register` and application will take user back user home page.
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/Home%20Screen.PNG)
 
 ## <a name = "quiz"></a> Quiz
 
 User's will have be able to do the following: Add Quizzes, Remove Quizzes, Practice Quizzes.
 
-User's create Quizzes by pressing the `Add` Button. 
+User's create Quizzes by pressing the `Add` Button.
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/AddQuizOption.PNG)
 
 User's can remove Quizzes they have created by pressing the `Remove` Button. Doing so will erase all statistics relating to the quiz. 
 
