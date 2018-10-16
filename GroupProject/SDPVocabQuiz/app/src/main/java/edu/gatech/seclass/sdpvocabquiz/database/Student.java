@@ -1,10 +1,11 @@
 package edu.gatech.seclass.sdpvocabquiz.database;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
-@Entity
+@Entity(indices = {@Index(value = {"username"}, unique = true)})
 public class Student {
     @PrimaryKey(autoGenerate = true)
     public int id;

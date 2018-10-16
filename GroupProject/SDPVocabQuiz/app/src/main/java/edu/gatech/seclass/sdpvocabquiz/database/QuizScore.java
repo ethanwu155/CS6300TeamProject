@@ -7,13 +7,17 @@ import android.arch.persistence.room.TypeConverters;
 
 import java.util.Date;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 @Entity(foreignKeys = {
         @ForeignKey(entity = Student.class,
             parentColumns = "id",
-            childColumns = "studentId"),
+            childColumns = "studentId",
+            onDelete = CASCADE),
         @ForeignKey(entity = Quiz.class,
             parentColumns = "id",
-            childColumns = "quizId")})
+            childColumns = "quizId",
+            onDelete = CASCADE)})
 public class QuizScore {
 
     @PrimaryKey(autoGenerate = true)

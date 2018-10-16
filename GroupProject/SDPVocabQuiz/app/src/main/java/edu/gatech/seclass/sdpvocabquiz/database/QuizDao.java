@@ -13,6 +13,9 @@ public interface QuizDao {
     @Query("SELECT * FROM Quiz")
     List<Quiz> getAllQuizzes();
 
+    @Query("SELECT * FROM Quiz WHERE Quiz.name LIKE :name")
+    List<Quiz> getQuizzesByName(String name);
+
     @Query("SELECT * FROM Quiz " +
             "INNER JOIN Word ON Word.quizId = Quiz.id")
     List<QuizWithWords> getAllQuizzesWithWords();
