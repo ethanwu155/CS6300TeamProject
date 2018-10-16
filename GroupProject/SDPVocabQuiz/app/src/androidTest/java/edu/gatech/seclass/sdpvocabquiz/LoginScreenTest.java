@@ -40,7 +40,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void registerNewStudent_opensMainMenu() throws Exception {
+    public void registerNewUser_opensMainMenu() throws Exception {
         onView(withId(R.id.registerButton)).perform(click());
 
         onView(withId(R.id.userTextEdit)).perform(click(), replaceText("gburdell"));
@@ -56,11 +56,28 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void loginNonregisteredStudent_fails() throws Exception {
+    public void loginNonregisteredUser_fails() throws Exception {
         onView(withId(R.id.textInputEdit)).perform(replaceText("abcdefgh"));
-        onView(withId(R.id.loginButton)).perform(click());
+        onView(withId(R.id.loginButton)).perform(click()).check(matches(isDisplayed()));
         // Check that the register button is still displayed (i.e. we haven't left the login screen)
         // TODO: Surely there's a better way to check that the login failed?
+    }
+
+    @Test
+    public void loginRegisteredUser_succeeds() throws Exception {
+        onView(withId(R.id.textInputEdit)).perform(replaceText("gburdell"));
+        onView(withId(R.id.loginButton)).perform(click());
+        // TODO: Again, check here that we've made it to the main page?
+    }
+
+    @Test
+    public void registerWithoutAllFieldsPopulated_fails() throws Exception {
+        // Attempting to register without completing all registration fields shouldn't let us progress
+        onView(withId(R.id.registerButton)).perform(click());
+        onView(withId(R.id.userTextEdit)).perform(click(), replaceText("zyxwvu"));
+        onView(withId(R.id.registerButton)).perform(closeSoftKeyboard(), click());
+        // TODO: Better way to check for failure - look for error popup/tooltip?
+        // Maybe when "Register" clicked w/ empty fields, populate those fields with warning messages?
         onView(withId(R.id.registerButton)).check(matches(isDisplayed()));
     }
 }
