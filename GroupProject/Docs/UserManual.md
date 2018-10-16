@@ -36,9 +36,25 @@ Registration process involves inserting the following information in the text fi
 
 User's will have be able to do the following: Add Quizzes, Remove Quizzes, Practice Quizzes.
 
-User's create Quizzes by pressing the `Add` Button.
+User's create Quizzes by pressing the `Add Quiz` Button.
 
 ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/AddQuizOption.PNG)
+
+Add Quiz View. User's input Quiz Name and Description. Can move on to add quiz contents by selecting `Add Word`
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/AddQuizView.PNG)
+
+Word's can be added to the quiz by inputting in content into Word and Definition Text Fieds and clicking `Add`.
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/AddWordView.PNG)
+
+3 Incorrect Definitions are required per Word in Quiz. To add incorrect definitions click `Add Bad Definition`. Incorrect definitions can be inputted into supplied Text Field.
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/AddBadDefinition.PNG)
+
+When user is done adding all words, definitions and incorrect definitions for their Quiz, complete the Add Quiz process by clicking `Add`. User will be returned to Home Screen with updated Quiz List. 
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/HomePageWithQuizList.PNG)
 
 User's can remove Quizzes they have created by pressing the `Remove` Button. Doing so will erase all statistics relating to the quiz. 
 
