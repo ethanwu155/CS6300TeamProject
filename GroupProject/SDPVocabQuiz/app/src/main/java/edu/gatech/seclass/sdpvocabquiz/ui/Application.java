@@ -17,6 +17,7 @@ import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.AppDatabase;
 import edu.gatech.seclass.sdpvocabquiz.database.Quiz;
 import edu.gatech.seclass.sdpvocabquiz.database.QuizEvent;
+import edu.gatech.seclass.sdpvocabquiz.database.QuizScore;
 import edu.gatech.seclass.sdpvocabquiz.database.QuizWithWords;
 import edu.gatech.seclass.sdpvocabquiz.database.Student;
 import edu.gatech.seclass.sdpvocabquiz.database.Word;
@@ -134,7 +135,6 @@ public class Application extends AppCompatActivity implements
 
     public List<Quiz> getQuizList() {
 
-        //TODO: DB is not working yet, just use the List<Quiz>
         if(db != null) {
             return db.quizDao().getAllQuizzes();
         }
@@ -191,14 +191,19 @@ public class Application extends AppCompatActivity implements
     }
 
     @Override
-    public void onQuizCompleted() {
+    public void onQuizCompleted(QuizScore score) {
         Toast.makeText(getApplicationContext(), "Quiz Completed and Logged in DB", Toast.LENGTH_SHORT).show();
         showQuizListFragment();
+        showStatisticsDialog(score);
     }
 
     @Override
     public void onQuizLoadError() {
         Toast.makeText(getApplicationContext(), "The Quiz has no defined words, can't practice!", Toast.LENGTH_SHORT).show();
         showQuizListFragment();
+    }
+
+    private void showStatisticsDialog(QuizScore score) {
+
     }
 }

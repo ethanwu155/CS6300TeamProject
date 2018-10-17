@@ -98,7 +98,7 @@
         android:layout_margin="20dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Add" />
+        android:text="SAVE" />
 
 
 </android.support.constraint.ConstraintLayout>

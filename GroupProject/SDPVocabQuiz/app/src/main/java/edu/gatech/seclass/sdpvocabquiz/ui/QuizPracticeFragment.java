@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.Question;
 import edu.gatech.seclass.sdpvocabquiz.database.QuizEvent;
+import edu.gatech.seclass.sdpvocabquiz.database.QuizScore;
 import edu.gatech.seclass.sdpvocabquiz.database.QuizWithWords;
 
 public class QuizPracticeFragment extends Fragment {
@@ -176,7 +177,7 @@ public class QuizPracticeFragment extends Fragment {
         mCurrentQuestion = quizEvent.getNextQuestion();
         if(mCurrentQuestion == null) {
             if (mListener != null) {
-                mListener.onQuizCompleted();
+                mListener.onQuizCompleted(quizEvent.gradeQuiz());
             }
         }
         a1.setChecked(false);
@@ -211,7 +212,7 @@ public class QuizPracticeFragment extends Fragment {
     }
 
     public interface OnQuizCompletedListener {
-        void onQuizCompleted();
+        void onQuizCompleted(QuizScore score);
         void onQuizLoadError();
     }
 }
