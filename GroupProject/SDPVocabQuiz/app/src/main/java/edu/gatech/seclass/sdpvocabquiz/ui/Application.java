@@ -109,15 +109,13 @@ public class Application extends AppCompatActivity implements
     }
 
     public int addQuiz(Quiz quiz) {
-        quizList.add(quiz);
         showQuizListFragment();
 
         if(db != null) {
-            db.quizDao().addQuiz(quiz);
-            List<QuizWithWords> quizList = db.quizDao().getQuizWithWordsByName(quiz.getName());
-            if(quizList.size() > 0) {
-                return quizList.get(0).getQuiz().getId();
-            }
+            int quizId = (int) db.quizDao().addQuiz(quiz);
+            quiz.setId(quizId);
+            this.quizList.add(quiz);
+            return quizId;
         }
 
         displayDBError();

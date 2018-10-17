@@ -8,7 +8,7 @@ import android.arch.persistence.room.Insert;
 public interface WordDao {
 
     @Insert
-    void addWord(Word word);
+    long addWord(Word word);
 
     @Delete
     void deleteWord(Word word);

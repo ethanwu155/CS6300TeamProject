@@ -20,7 +20,7 @@ public interface StudentDao {
     List<Student> getStudentById(int id);
 
     @Insert
-    void registerNewStudent(Student student);
+    long registerNewStudent(Student student);
 
     @Delete
     void delete(Student student);
