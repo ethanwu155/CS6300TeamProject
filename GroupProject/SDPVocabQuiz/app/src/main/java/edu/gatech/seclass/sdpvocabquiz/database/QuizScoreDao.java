@@ -14,7 +14,7 @@ public interface QuizScoreDao {
     List<QuizScore> getAllQuizScores();
 
     @Insert
-    void addQuizScore(QuizScore quizScore);
+    long addQuizScore(QuizScore quizScore);
 
     @Delete
     void deleteQuizScore(QuizScore quizScore);

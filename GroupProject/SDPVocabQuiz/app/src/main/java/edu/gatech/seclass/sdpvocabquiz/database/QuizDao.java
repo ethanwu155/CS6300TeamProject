@@ -37,7 +37,7 @@ public interface QuizDao {
     List<Quiz> getQuizzesNotByStudentId(int studentId);
 
     @Insert
-    void addQuiz(Quiz quiz);
+    long addQuiz(Quiz quiz);
 
     @Delete
     void deleteQuiz(Quiz quiz);
