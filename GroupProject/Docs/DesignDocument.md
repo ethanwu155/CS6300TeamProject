@@ -20,21 +20,20 @@
 ## 2 Architecture Design
 
 ### 2.1 Component Diagram
-![alt text](./pics/Component%20Diagram.svg)
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/development/GroupProject/Docs/pics/Updated%20Component%20Diagram.png)
 
-* The requirements for this project did not require a particularly complex solution.  Thus, in the planned architecure, the majority of functionality is to be implemented within a single main class.
-* Nevertheless, there are at least two other distinguishable "components":
-  1. The Application maintains a collection of Quiz objects, and when a user elects to practice one of them, the Application will call upon that Quiz n times to generate a question with randomly selected wrong answers.
-  2. As created Quizzes and QuizEvents must persist after the application is closed and after the device is powered off (and because the project specification specifies this is to be a non-networked solution), we must store these somewhere on disk.  We will do this with an sqLite databse.
+* We have the following components: Student, Quiz, Word, Statistic, and Persistance. Dotted/Solid lines connecting Application (UI) to Student component indicate use. So Application uses Student component as well as Quiz Component. Student component uses Quiz Component as this is a Vocabulary Quiz application. Additionally Quizzes component uses Words Component as well as Statistics.
+* As with UML 2 structure, we have a second level representation. We have a line connecting to a lollipop socket attached to the Persistence component. The Persistence component provides persistence services. In turn, the Persistence component relies on the local Quiz Database to provide low level database services. 
 
 ### 2.2 Deployment Diagram
+
 * Due to the lack of network requirements and all the data being stored locally, the application would be deployed on a single Android device and a deployment diagram would not be necessary.
 
 ## 3 Low Level Design
 
 ### 3.1 Class Diagram
 
-![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/development/GroupProject/Docs/pics/SDPVocab%20Class%20Diagram.png)
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/development/GroupProject/Docs/pics/SDPVocab%20Class%20Diagram%20v2.png)
 
 ### 3.2 Other Diagrams
 
