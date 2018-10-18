@@ -1,6 +1,9 @@
 package edu.gatech.seclass.sdpvocabquiz.ui;
 
+import android.content.DialogInterface;
+import android.media.AsyncPlayer;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -75,6 +78,9 @@ public class Application extends AppCompatActivity implements
             case R.id.menu_add:
                 showAddQuizFragment();
                 return false;
+            case R.id.menu_delete:
+                showDeleteQuizDialog();
+                return false;
             default:
                 break;
         }
@@ -120,6 +126,34 @@ public class Application extends AppCompatActivity implements
 
         displayDBError();
         return -1;
+    }
+
+    private void showDeleteQuizDialog() {
+        if(db != null) {
+            final List<Quiz> quizzes = db.quizDao().getQuizzesByStudentId(currentUserID);
+
+            if (quizzes.size() == 0) {
+                Toast.makeText(getApplicationContext(), currentUser + " has no quizzes to delete", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String[] quizTitles = new String[quizzes.size()];
+            for (int i = 0; i < quizzes.size(); i++) {
+                quizTitles[i] = quizzes.get(i).getName();
+            }
+            AlertDialog.Builder builder = new AlertDialog.Builder(Application.this);
+            builder.setTitle("Select Quiz to Delete")
+                    .setItems(quizTitles, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            removeQuiz(quizzes.get(which));
+                            showQuizListFragment();
+                        }
+                    });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+
+        } else {
+            displayDBError();
+        }
     }
 
     public void removeQuiz(Quiz quiz) {
