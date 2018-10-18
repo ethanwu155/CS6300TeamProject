@@ -3,8 +3,11 @@ package edu.gatech.seclass.sdpvocabquiz.ui;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,7 @@ public class RegisterFragment extends Fragment {
     Button registerButton;
     TextInputLayout email, major, username;
     Spinner spinner;
+    private TextInputEditText usernameEditText, emailEditText, majorEditText;
 
 
     public RegisterFragment() {
@@ -75,6 +79,32 @@ public class RegisterFragment extends Fragment {
         username = view.findViewById(R.id.userTextInput);
         major = view.findViewById(R.id.majorTextInput);
 
+        usernameEditText = view.findViewById(R.id.userTextEdit);
+        emailEditText = view.findViewById(R.id.emailTextEdit);
+        majorEditText = view.findViewById(R.id.majorTextEdit);
+
+        TextWatcher watcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                registerButton.setEnabled(isRegisterButtonEnabled());
+            }
+        };
+
+        usernameEditText.addTextChangedListener(watcher);
+        emailEditText.addTextChangedListener(watcher);
+        majorEditText.addTextChangedListener(watcher);
+
+
+
         registerButton = view.findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +123,15 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+        registerButton.setEnabled(false);
+
         return view;
+    }
+
+    private boolean isRegisterButtonEnabled() {
+        return (major.getEditText().getText().toString().trim().length() != 0) &&
+                (username.getEditText().getText().toString().trim().length() != 0) &&
+                (email.getEditText().getText().toString().trim().length() != 0);
     }
 
     @Override
