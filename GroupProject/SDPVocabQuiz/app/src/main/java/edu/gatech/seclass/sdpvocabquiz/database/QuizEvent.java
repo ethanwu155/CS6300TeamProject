@@ -22,6 +22,9 @@ public class QuizEvent {
         this.generateQuestions();
     }
 
+    public String getQuizTitle() {
+        return quizWithWords.getQuiz().getName();
+    }
     private void generateQuestions() {
         Collections.shuffle(this.quizWithWords.words);
         Collections.shuffle(this.quizWithWords.quiz.incorrectDefinitions);
@@ -72,4 +75,9 @@ public class QuizEvent {
         return quizScore;
     }
 
+    public String getQuizProgress() {
+        int totalQuestions = getNumQuestions();
+        int currentQuestion = questionIndex;
+        return String.valueOf(currentQuestion) + "/" + String.valueOf(totalQuestions);
+    }
 }

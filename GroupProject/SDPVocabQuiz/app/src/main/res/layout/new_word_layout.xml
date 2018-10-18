@@ -45,7 +45,7 @@
             android:text="CANCEL"/>
 
         <Button
-            android:id="@+id/addButton"
+            android:id="@+id/saveButton"
             android:layout_width="0dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
