@@ -30,24 +30,21 @@ public interface QuizScoreDao {
             "INNER JOIN Student ON Student.id = QuizScore.studentId " +
             "INNER JOIN Quiz on Quiz.id = QuizScore.quizId " +
             "WHERE Student.username LIKE :username AND Quiz.name LIKE :quizName " +
-            "ORDER BY QuizScore.timestamp ASC " +
-            "LIMIT 1")
+            "ORDER BY QuizScore.timestamp ASC ")
     List<QuizScore> getFirstScoreByStudentQuiz(String username, String quizName);
 
     @Query("SELECT * FROM QuizScore " +
             "INNER JOIN Student ON Student.id = QuizScore.studentId " +
             "INNER JOIN Quiz on Quiz.id = QuizScore.quizId " +
             "WHERE Student.username LIKE :username AND Quiz.name LIKE :quizName " +
-            "ORDER BY QuizScore.finalScore DESC " +
-            "LIMIT 1")
+            "ORDER BY QuizScore.finalScore DESC ")
     List<QuizScore> getHighestScoreByStudentQuiz(String username, String quizName);
 
-    @Query("SELECT Student.username FROM Student " +
+    @Query("SELECT DISTINCT Student.username FROM Student " +
             "INNER JOIN QuizScore ON QuizScore.studentId = Student.id " +
             "INNER JOIN Quiz on Quiz.studentId = Student.id " +
-            "WHERE Quiz.name LIKE :name AND QuizScore.finalScore = 100 " +
-            "ORDER BY QuizScore.timestamp DESC " +
-            "LIMIT 3")
+            "WHERE Quiz.name LIKE :name AND CAST(QuizScore.finalScore AS int) = 1 " +
+            "ORDER BY QuizScore.timestamp DESC ")
     List<String> getFirstThreeStudentHundredsByQuizName(String name);
 
 }

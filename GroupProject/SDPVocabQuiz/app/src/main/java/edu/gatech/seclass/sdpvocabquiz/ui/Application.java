@@ -305,7 +305,7 @@ public class Application extends AppCompatActivity implements
 
 
         List<QuizScore> highScoreList = db.quizScoreDao().getHighestScoreByStudentQuiz(currentUser, quiz.getName());
-        String highestScore = highScoreList.size() == 0 ? "" : "Highest Score: " + String.valueOf(firstScoreList.get(0).toString());
+        String highestScore = highScoreList.size() == 0 ? "" : "Highest Score: " + String.valueOf(highScoreList.get(0).toString());
 
         List<String> hundredsList = db.quizScoreDao().getFirstThreeStudentHundredsByQuizName(quiz.getName());
         String firstHundreds = "First Perfect Scores: " + TextUtils.join(", ", hundredsList);

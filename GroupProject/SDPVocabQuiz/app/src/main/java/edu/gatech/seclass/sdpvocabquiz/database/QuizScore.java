@@ -43,4 +43,12 @@ public class QuizScore {
         int percentage = (int) Math.ceil((finalScore) * 100);
         return String.valueOf(percentage) + "%";
     }
+
+    public float getFinalScore() {
+        return finalScore;
+    }
+
+    public Date getTimestamp() {
+        return this.timestamp;
+    }
 }
