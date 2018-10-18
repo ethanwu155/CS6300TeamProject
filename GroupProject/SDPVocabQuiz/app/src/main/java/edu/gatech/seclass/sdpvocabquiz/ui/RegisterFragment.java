@@ -15,6 +15,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.List;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.Student;
@@ -103,8 +106,6 @@ public class RegisterFragment extends Fragment {
         emailEditText.addTextChangedListener(watcher);
         majorEditText.addTextChangedListener(watcher);
 
-
-
         registerButton = view.findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,13 +114,15 @@ public class RegisterFragment extends Fragment {
                 String usernameString = username.getEditText().getText().toString();
                 String emailString = email.getEditText().getText().toString();
                 String seniorityString = spinner.getSelectedItem().toString().toUpperCase();
-                Student student = new Student(usernameString, emailString, majorString, SeniorityLevel.valueOf(seniorityString));
+                if(isUsernameAvailable(usernameString)) {
+                    Student student = new Student(usernameString, emailString, majorString, SeniorityLevel.valueOf(seniorityString));
+                    if (mListener != null) {
+                        mListener.onRegistered(student);
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Username already exists", Toast.LENGTH_SHORT).show();
 
-                if (mListener != null) {
-                    mListener.onRegistered(student);
                 }
-
-
             }
         });
 
@@ -132,6 +135,10 @@ public class RegisterFragment extends Fragment {
         return (major.getEditText().getText().toString().trim().length() != 0) &&
                 (username.getEditText().getText().toString().trim().length() != 0) &&
                 (email.getEditText().getText().toString().trim().length() != 0);
+    }
+
+    private boolean isUsernameAvailable(String username){
+        return !((LoginActivity)getActivity()).doesUserExist(username);
     }
 
     @Override

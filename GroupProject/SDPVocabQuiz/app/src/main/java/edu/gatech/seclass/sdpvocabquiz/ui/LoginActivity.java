@@ -50,22 +50,18 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     public void login(String username) {
-        if(db == null) {
-            displayLoginFailed();
-            return;
-        }
-        List<Student> studentList = db.studentDao().getStudentByUsername(username);
-
-        //BYPASS THIS FOR TESTING
-        if (studentList.size() > 0) {
+        if(doesUserExist(username)) {
             this.currentUser = username;
             loadQuizActivity();
-        } else {
-            displayLoginFailed();
         }
-        //this.currentUser = username;
-        //loadQuizActivity();
+        displayLoginFailed();
+    }
 
+    public boolean doesUserExist(String username) {
+        if(db == null) {
+            return true;
+        }
+        return db.studentDao().getStudentByUsername(username).size() > 0;
     }
 
     private void loadQuizActivity() {
