@@ -38,4 +38,9 @@ public class QuizScore {
         this.quizId = quizId;
     }
 
+    @Override
+    public String toString() {
+        int percentage = (int) Math.ceil((finalScore) * 100);
+        return String.valueOf(percentage) + "%";
+    }
 }

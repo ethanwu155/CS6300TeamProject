@@ -30,7 +30,7 @@ public interface QuizScoreDao {
             "INNER JOIN Student ON Student.id = QuizScore.studentId " +
             "INNER JOIN Quiz on Quiz.id = QuizScore.quizId " +
             "WHERE Student.username LIKE :username AND Quiz.name LIKE :quizName " +
-            "ORDER BY QuizScore.timestamp DESC " +
+            "ORDER BY QuizScore.timestamp ASC " +
             "LIMIT 1")
     List<QuizScore> getFirstScoreByStudentQuiz(String username, String quizName);
 

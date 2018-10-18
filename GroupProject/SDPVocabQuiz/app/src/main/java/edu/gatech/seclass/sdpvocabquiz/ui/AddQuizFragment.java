@@ -31,7 +31,7 @@ public class AddQuizFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Button saveButton, addWordButton, addBadDefButton;
+    Button saveButton, addWordButton, addBadDefButton, cancelButton;
     ArrayList<Word> wordList = new ArrayList<>();
     ArrayList<String> wordListDisplay = new ArrayList<>();
     ArrayList<String> badDefinitionList = new ArrayList<>();
@@ -60,6 +60,7 @@ public class AddQuizFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_quiz, container, false);
 
         saveButton = view.findViewById(R.id.saveButton);
+        cancelButton = view.findViewById(R.id.cancelButton);
         addWordButton = view.findViewById(R.id.addWordButton);
         addBadDefButton = view.findViewById(R.id.addBadDefButton);
         newWordLayout = view.findViewById(R.id.wordsLayout);
@@ -92,6 +93,15 @@ public class AddQuizFragment extends Fragment {
             }
         });
 
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener != null) {
+                    mListener.onQuizAddCancelled();
+                }
+
+            }
+        });
         addWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,6 +201,7 @@ public class AddQuizFragment extends Fragment {
 
     public interface OnQuizAddedListener {
         void onQuizAdded(Quiz quiz, List<Word> wordList);
+        void onQuizAddCancelled();
     }
 
 }

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -220,7 +221,7 @@ public class Application extends AppCompatActivity implements
         if (quizID == -1) {
             return;
         }
-        
+
         for (Word word : wordList) {
             word.setQuizId(quizID);
             db.wordDao().addWord(word);
@@ -229,9 +230,18 @@ public class Application extends AppCompatActivity implements
     }
 
     @Override
-    public void onQuizSelected(Quiz quiz) {
+    public void onQuizAddCancelled() {
+        showQuizListFragment();
+    }
+
+    private void practiceQuiz(Quiz quiz) {
         currentQuizEvent = new QuizEvent(currentUser, quiz.getName(), getApplicationContext());
         showPracticeQuizFragment(quiz);
+    }
+
+    @Override
+    public void onQuizSelected(Quiz quiz) {
+        showQuizActions(quiz);
     }
 
     @Override
@@ -248,6 +258,65 @@ public class Application extends AppCompatActivity implements
     }
 
     private void showStatisticsDialog(QuizScore score) {
+        /**
+         * After every word in the quiz has been used, the student will be shown the percentage of
+         *  words they correctly defined, and this information will be saved in the quiz score statistics for that quiz and student."
+         */
+        //
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Application.this);
+        builder.setTitle("Quiz Completed!")
+                .setMessage(score.toString());
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
+    private void showQuizActions(final Quiz quiz) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Application.this);
+        builder.setItems(R.array.QuizActions, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which) {
+                            case 0:
+                                practiceQuiz(quiz);
+                                break;
+                            case 1:
+                                showQuizStatistics(quiz);
+                                break;
+                        }
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void showQuizStatistics(Quiz quiz) {
+        /**
+         *  Clicking on a quiz must display
+         *  (1) the student’s first score and when it was achieved (date and time),
+         *  (2) the student’s highest score and when it was achieved (date and time), and
+         *  (3) the names of the first three students to score 100% on the quiz, ordered alphabetically.
+         */
+
+
+        //TODO:  NEED TIMESTAMP FOR FIRST SCORE
+        List<QuizScore> firstScoreList = db.quizScoreDao().getFirstScoreByStudentQuiz(currentUser, quiz.getName());
+        String firstScore = firstScoreList.size() == 0 ? "" : "First Score: " + String.valueOf(firstScoreList.get(0).toString());
+
+
+        List<QuizScore> highScoreList = db.quizScoreDao().getHighestScoreByStudentQuiz(currentUser, quiz.getName());
+        String highestScore = highScoreList.size() == 0 ? "" : "Highest Score: " + String.valueOf(firstScoreList.get(0).toString());
+
+        List<String> hundredsList = db.quizScoreDao().getFirstThreeStudentHundredsByQuizName(quiz.getName());
+        String firstHundreds = "First Perfect Scores: " + TextUtils.join(", ", hundredsList);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Application.this);
+        builder.setTitle("STATISTICS")
+        .setMessage(firstScore + "\n" + highestScore + "\n" + firstHundreds);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
     }
 }

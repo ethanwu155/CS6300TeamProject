@@ -9,11 +9,20 @@
     <string name="Senior">Senior</string>
     <string name="add_word">Add</string>
     <string name="cancel">Cancel</string>
+    <string name="practiceQuiz">Practice Quiz</string>
+    <string name="deleteQuiz">Delete Quiz</string>
+    <string name="showStatistics">Show Statistics</string>
 
     <string-array name="Seniority">
         <item>@string/Freshman</item>
         <item>@string/Sophomore</item>
         <item>@string/Junior</item>
         <item>@string/Senior</item>
+    </string-array>
+
+    <string-array name="QuizActions">
+        <item>@string/practiceQuiz</item>
+        <!--<item>@string/deleteQuiz</item>-->
+        <item>@string/showStatistics</item>
     </string-array>
 </resources>

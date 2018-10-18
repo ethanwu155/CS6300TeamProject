@@ -190,6 +190,7 @@ public class QuizPracticeFragment extends Fragment {
         a2.setChecked(false);
         a3.setChecked(false);
         a4.setChecked(false);
+        confirmButton.setEnabled(false);
         updateUI();
     }
 
@@ -198,6 +199,7 @@ public class QuizPracticeFragment extends Fragment {
         a2.setChecked(answer == 2);
         a3.setChecked(answer == 3);
         a4.setChecked(answer == 4);
+        confirmButton.setEnabled(true);
     }
 
     @Override
