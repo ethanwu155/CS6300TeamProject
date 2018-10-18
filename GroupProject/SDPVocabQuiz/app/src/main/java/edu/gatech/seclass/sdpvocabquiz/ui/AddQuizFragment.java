@@ -2,21 +2,15 @@ package edu.gatech.seclass.sdpvocabquiz.ui;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +31,7 @@ public class AddQuizFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Button addButton, addWordButton, addBadDefButton;
+    Button saveButton, addWordButton, addBadDefButton;
     ArrayList<Word> wordList = new ArrayList<>();
     ArrayList<String> wordListDisplay = new ArrayList<>();
     ArrayList<String> badDefinitionList = new ArrayList<>();
@@ -65,7 +59,7 @@ public class AddQuizFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_quiz, container, false);
 
-        addButton = view.findViewById(R.id.addButton);
+        saveButton = view.findViewById(R.id.saveButton);
         addWordButton = view.findViewById(R.id.addWordButton);
         addBadDefButton = view.findViewById(R.id.addBadDefButton);
         newWordLayout = view.findViewById(R.id.wordsLayout);
@@ -73,10 +67,21 @@ public class AddQuizFragment extends Fragment {
         quizName = view.findViewById(R.id.textInputLayoutQuizName);
         quizDescription = view.findViewById(R.id.textInputLayoutQuizDescription);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int defsRequired = wordList.size() * 3;
+                int numDefs = badDefinitionList.size();
+                if(numDefs < defsRequired) {
+                    Toast.makeText(getActivity(),
+                            String.format("Please add %d more bad definitions", defsRequired - numDefs),
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String name = quizName.getEditText().getText().toString();
+
+
                 String description = quizDescription.getEditText().getText().toString();
                 //Quiz quiz = new Quiz(name, description, wordList, badDefinitionList);  //TODO: the DB needs to be updated
                 int studentID = ((Application)getActivity()).currentUserID;
@@ -95,7 +100,7 @@ public class AddQuizFragment extends Fragment {
                 final EditText newWordEditText = dialog.findViewById(R.id.newWord);
                 final EditText definitionEditText = dialog.findViewById(R.id.definition);
                 final Button cancelButton = dialog.findViewById(R.id.cancelButton);
-                final Button addButton = dialog.findViewById(R.id.addButton);
+                final Button addButton = dialog.findViewById(R.id.saveButton);
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -121,7 +126,7 @@ public class AddQuizFragment extends Fragment {
                 dialog.setContentView(R.layout.new_definition_layout);
                 final EditText definitionEditText = dialog.findViewById(R.id.definition);
                 final Button cancelButton = dialog.findViewById(R.id.cancelButton);
-                final Button addButton = dialog.findViewById(R.id.addButton);
+                final Button addButton = dialog.findViewById(R.id.saveButton);
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

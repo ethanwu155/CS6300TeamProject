@@ -2,11 +2,9 @@ package edu.gatech.seclass.sdpvocabquiz.ui;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +36,7 @@ public class QuizPracticeFragment extends Fragment {
     private Button confirmButton;
     SelectableCardView a1, a2, a3, a4;
     TextView textViewA1, textViewA2, textViewA3, textViewA4, word;
+    TextView quizTitle, currentProgress;
     private Question mCurrentQuestion;
     private boolean quizCompleted = false;
 
@@ -73,6 +72,9 @@ public class QuizPracticeFragment extends Fragment {
         textViewA4 = view.findViewById(R.id.info_text_answer_4);
         word = view.findViewById(R.id.word);
 
+        currentProgress = view.findViewById(R.id.textViewProgress);
+        quizTitle = view.findViewById(R.id.textViewQuizName);
+
         View.OnClickListener answerListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +105,7 @@ public class QuizPracticeFragment extends Fragment {
         confirmButton.setOnClickListener(answerListener);
 
         initialize();
+        quizTitle.setText(quizEvent.getQuizTitle());
 
         return view;
     }
@@ -123,6 +126,9 @@ public class QuizPracticeFragment extends Fragment {
             //app.displayDBError();
             return;
         }
+
+        currentProgress.setText(quizEvent.getQuizProgress());
+
         word.setText(mCurrentQuestion.word);
         ArrayList<String> definitions = mCurrentQuestion.definitions;
         textViewA1.setText(definitions.get(0));

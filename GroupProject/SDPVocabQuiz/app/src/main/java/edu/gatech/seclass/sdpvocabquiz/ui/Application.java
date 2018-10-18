@@ -115,12 +115,20 @@ public class Application extends AppCompatActivity implements
     }
 
     public int addQuiz(Quiz quiz) {
-        showQuizListFragment();
-
         if(db != null) {
+            List<Quiz> quizList = db.quizDao().getQuizzesByName(quiz.getName());
+            if(quizList.size()>0) {
+
+                Toast.makeText(getApplicationContext(),
+                        "Quiz name already exists",
+                        Toast.LENGTH_SHORT).show();
+                return -1;
+            }
             int quizId = (int) db.quizDao().addQuiz(quiz);
             quiz.setId(quizId);
             this.quizList.add(quiz);
+
+            showQuizListFragment();
             return quizId;
         }
 
@@ -209,6 +217,10 @@ public class Application extends AppCompatActivity implements
     @Override
     public void onQuizAdded(Quiz quiz, List<Word> wordList) {
         int quizID = addQuiz(quiz);
+        if (quizID == -1) {
+            return;
+        }
+        
         for (Word word : wordList) {
             word.setQuizId(quizID);
             db.wordDao().addWord(word);
