@@ -48,11 +48,11 @@ We will mainly be using JUnit, and potentially use Selenium as well for testing.
 | Test get first score | login, create a quiz, practice quiz, get score | verify that score is correct | n/a | n/a |
 | Test get highest score | login, create a quiz, practice quiz with varying results, get highest score | verify highest score is correct | n/a | n/a |
 | Test practice quiz with score | login, create a quiz, practice quiz and get score | verify score is correct | n/a | n/a |
-| Test quiz generate question | login, create a quiz, test generate word function | verify word is valid | n/a | n/a |
-| Test QuizEvent is get next question | login, create a quiz and quizevent, call getNextQuestion() method | verify it returns a question | n/a | n/a |
+| Test quiz generate question | login, create a quiz, test generate word function | verify word is valid | succeeds | P |
+| Test QuizEvent is get next question | login, create a quiz and quizevent, call getNextQuestion() method | verify it returns a question | succeeds | P |
 | Test get current score | login, create a quiz and quizevent, answer all questions with varying correctness | verify score is correct | n/a | n/a |
-| Test submit question response | login, create a quiz and quizevent, submit a question response | verify that question was graded | n/a | n/a |
+| Test submit question response | login, create a quiz and quizevent, submit a question response | verify that question was graded | succeeds | P |
 | Test get question result | login, create a quiz and quizevent, submit question response and call getQuestionResult() | verify that question was graded correctly | n/a | n/a |
 | Test add word | login, create a quiz and quizevent, call Question addWord() method | verify word is in Question wordList | verified | P |
 | Test add incorrect definition | login, create a quiz and quizevent, call Question addIncorrectDefinition() method | verify incorrect definition is in incorrectDefinitions list | verified | P |
-| Test system multiple users practicing quizzes | create a few users, have each user create a few quizzes, each user practices a few quizzes, get quiz scores by student | verify scores are correct | n/a | n/a |
+| Test system multiple users practicing quizzes | create a few users, have each user create a few quizzes and practice each other's quizzes | verify scores are correct | succeed | P |
