@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.Student;
@@ -113,6 +115,11 @@ public class RegisterFragment extends Fragment {
                 String majorString = major.getEditText().getText().toString();
                 String usernameString = username.getEditText().getText().toString();
                 String emailString = email.getEditText().getText().toString();
+                if(!isEmailValid(emailString)) {
+                    Toast.makeText(getActivity(), "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                
                 String seniorityString = spinner.getSelectedItem().toString().toUpperCase();
                 if(isUsernameAvailable(usernameString)) {
                     Student student = new Student(usernameString, emailString, majorString, SeniorityLevel.valueOf(seniorityString));
@@ -170,5 +177,12 @@ public class RegisterFragment extends Fragment {
      */
     public interface OnRegisterListener {
         void onRegistered(Student student);
+    }
+
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }
