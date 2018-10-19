@@ -103,10 +103,10 @@ View Quiz Statistics
   * User will be able to view statistics for quizzes
     * User's first score with date and time 
     * Highest User score with datea and time
-    * Names of first three students to achieve 100% on the quiz
+    * Names of first students to achieve 100% on the quiz
 - Scenarios :
   * User selectes "View Quiz Statistics"
-  * User selectes name of Quiz they want to view statistics for
+  * User selects name of Quiz they want to view statistics for
   * User looks at results
   * User returns to "Quiz List" page 
       

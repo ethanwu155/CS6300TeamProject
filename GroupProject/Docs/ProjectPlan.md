@@ -4,13 +4,13 @@
 
 ## 1. Introduction
 
-Document describes Software Development Process for CS6300 Team 69's Vocabulary Quiz application. This Vocabulary Quiz application will do the following: user login, adding/removing quizzes, practicing quizzes and viewing quiz results.
+This document describes the Software Development Process for CS6300 Team 69's Vocabulary Quiz application. This Vocabulary Quiz application will do the following: user login, adding/removing quizzes, practicing quizzes and viewing quiz results.
 
 ## 2. Process Description
 
 The team will utilize Unified Software Process (USP) Model. We will deliver the following four deliverables:
 
-* __Deliverable 1 - Software Design__ - Due 9/29/2018 8 am EST
+* __Deliverable 1 - Software Design__ - Due 9/29/2018 8 am ET
 
   * Individual UML Class Diagrams
   
@@ -28,7 +28,7 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
   
     - *Exit Criteria:* Team UML Class Diagram and Team-Design document containing updated team UML Diagram and summary of team discussion/design/lessons learned.
 
-* __Deliberable 2 - Inception & Elaboration__ - Due 10/6/2018 8 am EST
+* __Deliberable 2 - Inception & Elaboration__ - Due 10/6/2018 8 am ET
 
   * Project Plan
   
@@ -70,7 +70,7 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
    
     - *Exit Criteria:* Generate a list of non-functional requirements containing things such as UI and commonents regarding application performance. 
 
-* __Deliverable 3 - Construction__ - Due 10/13/2018 8 am EST
+* __Deliverable 3 - Construction__ - Due 10/13/2018 8 am ET
 
   * Document Revision
   
@@ -82,7 +82,7 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
   
   * Initial Version of Application
   
-    - *Description:* Team will execute Design Plan and will come up with a preliminary Vocabulary Quiz Application. This will be an alpha version of the application that will require more work and revision.
+    - *Description:* Team will execute Design Plan and will come up with a preliminary Vocabulary Quiz Application. This will be an alpha version of the application that will likely require more work and revision. The goal is to have most of the core functionality complete at this stage. 
   
     - *Entrance Criteria:* Complete Design Document/Plan, GitHub for Version Control, Android Studio
   
@@ -100,11 +100,11 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
   
     - *Description:* Document that introduces Android Application to those unfamiliar with the application. It will include information on the application functionality and how to use the application for themselves if they are interested.
   
-    - *Entrance Criteria:* Understanding of application, GitHub .md files
+    - *Entrance Criteria:* Understanding of application, GitHub .md files, Alpha Version of Application
   
     - *Exit Criteria:* Complete User Manual with required information and idealy screen shots of applcation. This document will be updated until the final version is complete.
 
-* __Deliverable 4 - Transition__ - Due 10/20/2018 8 am EST
+* __Deliverable 4 - Transition__ - Due 10/20/2018 8 am ET
 
   * Document Revision
   
@@ -145,7 +145,7 @@ The team will utilize Unified Software Process (USP) Model. We will deliver the 
 | Role | Responsibility | Assignment |
 | ---- | -------------- | ---------- |
 | Team Leader/Project Manager | Team Leader/Project Manager is responsible for coordinating schedule for project. They will be tasked with keeping Process Plan Document up to date as well as repository management and deliverable submission. | Ethan Wu | 
-| Architect | Architect will be responsible for high level design choice for application and tasked with monitoring the progress of Developers. | Ryan Dymock |
-| Android Developer | Android Developer will be responsible for low level design/implementation for application. | Benjamin Evans |
-| Test Engineer | Test Engineer will be tasked with creating and executing test plan. Results will be documented and shared with Architect and Developers to address issues/bugs with application. | Corey Robbins |
+| Front-End Developer | Front-End Developer will be responsible for implementing visual elements that the user will see and interact with. Will coordinate with Back-End Developer to achieve full application functionality. | Ryan Dymock |
+| Back-End Developer | Back-End Developer will be responsible for the database and core computational logic of application. Will work closely with Front-End Developer to achieve full application functionality. | Corey Robins |
+| Test Engineer | Test Engineer will be tasked with creating and executing test plan. Results will be documented and shared with Architect and Developers to address issues/bugs with application. | Ben Evans |
   
