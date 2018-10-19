@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import edu.gatech.seclass.sdpvocabquiz.R;
 import edu.gatech.seclass.sdpvocabquiz.database.AppDatabase;
@@ -36,9 +38,7 @@ public class Application extends AppCompatActivity implements
     public int currentUserID = -1;
     private AppDatabase db;
 
-    private List<Student> studentList = new ArrayList<>();
     private List<Quiz> quizList = new ArrayList<>();  //TODO: replace this when DB is working
-    private Map<String, List<QuizEvent>> quizHistory = new HashMap<>();
     public Quiz currentQuiz;
     public QuizEvent currentQuizEvent;
 
@@ -89,6 +89,7 @@ public class Application extends AppCompatActivity implements
 
         return false;
     }
+
 
     public QuizEvent getCurrentQuizEvent() {
         return currentQuizEvent;
@@ -175,8 +176,26 @@ public class Application extends AppCompatActivity implements
 
     }
 
-    public List<Quiz> getQuizList() {
+    public List<Quiz> getOrderedQuizList() {
+        List<Quiz> quizList = new ArrayList<>();
+        List<String> quizNames = db.quizScoreDao().getQuizzesByStudent(currentUser);
+        for (String name : quizNames) {
+            List<Quiz> quizzesByName = db.quizDao().getQuizzesByName(name);
+            if(quizzesByName.size()>0) {
+                quizList.add(quizzesByName.get(0));
+            }
+        }
 
+        List<Quiz> fullQuizList = getQuizList();
+        for (Quiz quiz : fullQuizList) {
+            if(!quizNames.contains(quiz.getName())) {
+                quizList.add(quiz);
+            }
+        }
+        return quizList;
+    }
+
+    public List<Quiz> getQuizList() {
         if(db != null) {
             return db.quizDao().getAllQuizzes();
         }
@@ -302,11 +321,11 @@ public class Application extends AppCompatActivity implements
 
         //TODO:  NEED TIMESTAMP FOR FIRST SCORE
         List<QuizScore> firstScoreList = db.quizScoreDao().getFirstScoreByStudentQuiz(currentUser, quiz.getName());
-        String firstScore = firstScoreList.size() == 0 ? "" : "First Score: " + String.valueOf(firstScoreList.get(0).toString());
+        String firstScore = firstScoreList.size() == 0 ? "" : "First Score: " + String.valueOf(firstScoreList.get(0).toStringWithTimeStamp());
 
 
         List<QuizScore> highScoreList = db.quizScoreDao().getHighestScoreByStudentQuiz(currentUser, quiz.getName());
-        String highestScore = highScoreList.size() == 0 ? "" : "Highest Score: " + String.valueOf(highScoreList.get(0).toString());
+        String highestScore = highScoreList.size() == 0 ? "" : "Highest Score: " + String.valueOf(highScoreList.get(0).toStringWithTimeStamp());
 
         List<String> hundredsList = db.quizScoreDao().getFirstThreeStudentHundredsByQuizName(quiz.getName());
         String firstHundreds = "First Perfect Scores: " + TextUtils.join(", ", hundredsList);

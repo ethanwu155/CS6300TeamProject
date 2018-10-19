@@ -73,7 +73,7 @@ public class QuizListFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         Context context = view.getContext();
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        List<Quiz> quizList = ((Application)(getActivity())).getQuizList();
+        List<Quiz> quizList = ((Application)(getActivity())).getOrderedQuizList();
         recyclerView.setAdapter(new QuizItemRecyclerViewAdapter(quizList, mListener));
 
         return view;
