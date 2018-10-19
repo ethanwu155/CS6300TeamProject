@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/quizNameTextEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Quiz Name" />
@@ -33,6 +34,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/quizDescripTextEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Quiz Description" />
