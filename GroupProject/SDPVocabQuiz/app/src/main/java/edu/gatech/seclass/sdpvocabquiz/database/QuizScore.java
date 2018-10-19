@@ -5,6 +5,7 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -42,6 +43,14 @@ public class QuizScore {
     public String toString() {
         int percentage = (int) Math.ceil((finalScore) * 100);
         return String.valueOf(percentage) + "%";
+    }
+
+    public String toStringWithTimeStamp(){
+        String pattern = "yyyy-MM-dd HH:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        String date = simpleDateFormat.format(timestamp);
+        return toString() + " " + date;
     }
 
     public float getFinalScore() {

@@ -321,11 +321,11 @@ public class Application extends AppCompatActivity implements
 
         //TODO:  NEED TIMESTAMP FOR FIRST SCORE
         List<QuizScore> firstScoreList = db.quizScoreDao().getFirstScoreByStudentQuiz(currentUser, quiz.getName());
-        String firstScore = firstScoreList.size() == 0 ? "" : "First Score: " + String.valueOf(firstScoreList.get(0).toString());
+        String firstScore = firstScoreList.size() == 0 ? "" : "First Score: " + String.valueOf(firstScoreList.get(0).toStringWithTimeStamp());
 
 
         List<QuizScore> highScoreList = db.quizScoreDao().getHighestScoreByStudentQuiz(currentUser, quiz.getName());
-        String highestScore = highScoreList.size() == 0 ? "" : "Highest Score: " + String.valueOf(highScoreList.get(0).toString());
+        String highestScore = highScoreList.size() == 0 ? "" : "Highest Score: " + String.valueOf(highScoreList.get(0).toStringWithTimeStamp());
 
         List<String> hundredsList = db.quizScoreDao().getFirstThreeStudentHundredsByQuizName(quiz.getName());
         String firstHundreds = "First Perfect Scores: " + TextUtils.join(", ", hundredsList);
