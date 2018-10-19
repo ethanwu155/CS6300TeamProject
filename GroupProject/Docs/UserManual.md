@@ -177,7 +177,7 @@ We created manual test cases regarding Quiz Statistics feature of our applicatio
 * Click `Show Statistics`
 * View should include First Score, Highest Score, First Perfect Score. High Score display 100%.
 
-![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/LowScoreRecorded.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/QuizScoreView.PNG)
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizFinalScore.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/LowScoreRecorded.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/QuizScoreView.PNG)
 
 4. Verify current score is correct
 
@@ -212,3 +212,5 @@ We created manual test cases regarding Quiz Statistics feature of our applicatio
 * Click Quiz Name
 * Click `Show Statistics`
 * View should include "First Hundred: user" only
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/user2statsview.PNG)
