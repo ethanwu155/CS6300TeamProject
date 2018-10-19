@@ -3,6 +3,7 @@ package edu.gatech.seclass.sdpvocabquiz.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -53,8 +54,18 @@ public class LoginActivity extends AppCompatActivity implements
         if(doesUserExist(username)) {
             this.currentUser = username;
             loadQuizActivity();
+        } else {
+            displayLoginFailed();
         }
-        displayLoginFailed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment login = getSupportFragmentManager().findFragmentByTag("LOGIN");
+        if (login == null) {
+            showLoginFragment();
+        }
+        super.onBackPressed();
     }
 
     public boolean doesUserExist(String username) {

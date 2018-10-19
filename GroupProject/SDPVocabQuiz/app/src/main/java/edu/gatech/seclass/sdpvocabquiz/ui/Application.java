@@ -3,6 +3,7 @@ package edu.gatech.seclass.sdpvocabquiz.ui;
 import android.content.DialogInterface;
 import android.media.AsyncPlayer;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -110,7 +111,7 @@ public class Application extends AppCompatActivity implements
     private void showPracticeQuizFragment(Quiz quiz) {
         currentQuiz = quiz;
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrameLayout, new QuizPracticeFragment(), "ADD_QUIZ")
+                .replace(R.id.fragmentFrameLayout, new QuizPracticeFragment(), "PRACTICE_QUIZ")
                 .commit();
 
     }
@@ -318,5 +319,23 @@ public class Application extends AppCompatActivity implements
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Fragment quizList = getSupportFragmentManager().findFragmentByTag("QUIZ_LIST");
+        Fragment addQuiz = getSupportFragmentManager().findFragmentByTag("ADD_QUIZ");
+        Fragment practiceQuiz = getSupportFragmentManager().findFragmentByTag("PRACTICE_QUIZ");
+        if (quizList != null) {
+            super.onBackPressed();
+        } else if (addQuiz != null) {
+            //press cancel button
+            onQuizAddCancelled();
+
+        } else {
+            //cancel out of quiz
+            showQuizListFragment();
+        }
     }
 }
