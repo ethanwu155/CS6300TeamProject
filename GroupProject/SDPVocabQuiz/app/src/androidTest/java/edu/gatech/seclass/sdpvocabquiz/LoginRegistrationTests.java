@@ -34,7 +34,7 @@ import static org.hamcrest.core.IsNot.not;
 
 
 @RunWith(AndroidJUnit4.class)
-public class LoginScreenTest {
+public class LoginRegistrationTests {
     private TestUtils tu;
 
     @Rule
@@ -125,7 +125,7 @@ public class LoginScreenTest {
         onView(withId(R.id.emailTextEdit)).perform(closeSoftKeyboard(), typeText(randomUsername+"@gatech.edu"));
         onView(withId(R.id.registerButton)).check(matches(isEnabled())).perform(closeSoftKeyboard(), click());
         onView(withId(R.id.welcomeTextView)).check(matches(isDisplayed()));
-        Log.d("LoginScreenTest-Info", "Registered user: \""+randomUsername+"\"");
+        Log.d("LoginRegistrationTests-Info", "Registered user: \""+randomUsername+"\"");
     }
 
     @Test

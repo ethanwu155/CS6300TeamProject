@@ -23,7 +23,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withSubstring;
 import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTests {
+public class QuizAddDeleteTests {
     // Reference: https://android.jlelse.eu/the-basics-of-android-espresso-testing-activities-fragments-7a8bfbc16dc5
     // Reference: https://stackoverflow.com/questions/30191715/start-activity-for-testing
     private static String testUsername1;
