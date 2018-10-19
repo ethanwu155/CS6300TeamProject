@@ -3,6 +3,8 @@ package edu.gatech.seclass.sdpvocabquiz;
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,11 +17,14 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withSubstring;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)
@@ -153,6 +158,65 @@ public class QuizAddDeleteTests {
 
         onView(withId(R.id.saveButton)).perform(click());
         onView(withId(R.id.welcomeTextView)).check(matches(isDisplayed()));
+    }
+
+    // The remaining tests may require a recently cleared database, or the added quizes may be off-screen
+    // TODO: Any way to get around this?^
+
+    @Test
+    public void addQuiz_backdoorQuizAddUtilityWorks() throws Exception {
+        // Make a username and register it
+        String randomUserName = TestUtils.randAlphanumeric(12);
+        tu.registerUser(randomUserName);
+
+        // Add a Quiz
+        String randomQuizName = "Quiz-"+TestUtils.randAlphanumeric(8);
+        tu.addBaselineQuiz(randomUserName, randomQuizName);
+
+        // Login w/ user
+        mApplicationActivityTestRule.launchActivity(makeLoginIntentFor(randomUserName));
+
+        // See if it shows up in the GUI
+        onView(withText(randomQuizName)).check(matches(isDisplayed()));
+//        RecyclerView recyclerView = mApplicationActivityTestRule.getActivity().findViewById(R.id.recyclerView);
+    }
+
+    @Test
+    public void delQuiz_byOtherUser_fails() throws Exception {
+        // Register a username
+        String randomUserName = TestUtils.randAlphanumeric(12);
+        tu.registerUser(randomUserName);
+
+        // Add a Quiz by this user
+        String randomQuizName = "Quiz-"+TestUtils.randAlphanumeric(8);
+        tu.addBaselineQuiz(randomUserName, randomQuizName);
+
+        // Register another username
+        String anotherUserName = TestUtils.randAlphanumeric(12);
+        tu.registerUser(anotherUserName);
+
+        // Verify 2nd user has no quizzes to delete
+        mApplicationActivityTestRule.launchActivity(makeLoginIntentFor(anotherUserName));
+        onView(withId(R.id.menu_delete)).perform(click());
+        onView(withId(R.id.welcomeTextView)).check(matches(isDisplayed()));
+        // TODO: Might need better failure check here
+    }
+
+    @Test
+    public void delQuiz_byCurrentUser_succeeds() throws Exception {
+        // Register a username
+        String randomUserName = TestUtils.randAlphanumeric(12);
+        tu.registerUser(randomUserName);
+
+        // Add a Quiz by this user
+        String randomQuizName = "Quiz-"+TestUtils.randAlphanumeric(8);
+        tu.addBaselineQuiz(randomUserName, randomQuizName);
+
+        // Login w/ user and try to delete
+        mApplicationActivityTestRule.launchActivity(makeLoginIntentFor(randomUserName));
+        onView(withId(R.id.menu_delete)).perform(click());
+        onView(withText(randomQuizName)).check(matches(isDisplayed())).perform(click());
+        // TODO: Add a quizExists(name) method to TestUtils
     }
 
 }
