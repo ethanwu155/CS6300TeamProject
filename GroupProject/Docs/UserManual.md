@@ -110,5 +110,7 @@ User's can view statistics for individual quizzes. They can do this by clicking 
 
 ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/development/GroupProject/Docs/pics/UserManual/PracticeViewStatsOptions.PNG)
 
-Application will display Quiz Statistic Summary including: First Score, High Score, and First Three User perfect score.
+Application will display Quiz Statistic Summary including: First Score, High Score, and First User perfect score (including timestamps when scores are achieved).
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/development/GroupProject/Docs/pics/UserManual/QuizScoreView.PNG)
 
