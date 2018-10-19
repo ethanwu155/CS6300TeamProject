@@ -73,6 +73,24 @@ public class AddQuizFragment extends Fragment {
             public void onClick(View view) {
                 int defsRequired = wordList.size() * 3;
                 int numDefs = badDefinitionList.size();
+
+                String name = quizName.getEditText().getText().toString();
+                if(name.length()==0)  {
+                    Toast.makeText(getActivity(),"Must add a Quiz name",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String description = quizDescription.getEditText().getText().toString();
+                if(description.length()==0)  {
+                    Toast.makeText(getActivity(),"Must add a Quiz description",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(wordList.size() == 0) {
+                    Toast.makeText(getActivity(),"Must add a word",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(numDefs < defsRequired) {
                     Toast.makeText(getActivity(),
                             String.format("Please add %d more bad definitions", defsRequired - numDefs),
@@ -80,10 +98,7 @@ public class AddQuizFragment extends Fragment {
                     return;
                 }
 
-                String name = quizName.getEditText().getText().toString();
 
-
-                String description = quizDescription.getEditText().getText().toString();
                 //Quiz quiz = new Quiz(name, description, wordList, badDefinitionList);  //TODO: the DB needs to be updated
                 int studentID = ((Application)getActivity()).currentUserID;
                 Quiz quiz = new Quiz(name, description, badDefinitionList, studentID);
