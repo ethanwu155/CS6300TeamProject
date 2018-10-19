@@ -55,4 +55,4 @@ We will mainly be using JUnit, and potentially use Selenium as well for testing.
 | Test get question result | login, create a quiz and quizevent, submit question response and call getQuestionResult() | verify that question was graded correctly | n/a | n/a |
 | Test add word | login, create a quiz and quizevent, call Question addWord() method | verify word is in Question wordList | verified | P |
 | Test add incorrect definition | login, create a quiz and quizevent, call Question addIncorrectDefinition() method | verify incorrect definition is in incorrectDefinitions list | verified | P |
-| Test system multiple users practicing quizzes | create a few users, have each user create a few quizzes and practice each other's quizzes | verify scores are correct | succeed | P |
+| Test system multiple users practicing quizzes | create a few users, have each user create a few quizzes and practice each other's quizzes | verify users can practice each other quizzes | succeed | P |
