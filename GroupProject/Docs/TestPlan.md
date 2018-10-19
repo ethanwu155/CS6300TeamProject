@@ -52,8 +52,102 @@ We will mainly be using JUnit, and potentially use Selenium as well for testing.
 | Test QuizEvent is get next question | login, create a quiz and quizevent, call getNextQuestion() method | verify it returns a question | succeeds | P |
 | Test get current score | login, create a quiz and quizevent, answer all questions with varying correctness | verify score is correct | verified | P |
 | Test submit question response | login, create a quiz and quizevent, submit a question response | verify that question was graded | succeeds | P |
-| Test get question result | login, create a quiz and quizevent, submit question response and call getQuestionResult() | verify that question was graded correctly | n/a | n/a |
 | Test add word | login, create a quiz and quizevent, call Question addWord() method | verify word is in Question wordList | verified | P |
 | Test add incorrect definition | login, create a quiz and quizevent, call Question addIncorrectDefinition() method | verify incorrect definition is in incorrectDefinitions list | verified | P |
 | Test system multiple users practicing quizzes | create a few users, have each user create a few quizzes and practice each other's quizzes | verify users can practice each other quizzes | succeed | P |
 | Test system for multiple user quiz results | create a few users, have one create a quiz and both users practice quiz. first user gets hundred | verify first hundred goes to first user | verified | P |
+
+## 3 Testing
+
+Testing is an important part of the software design process. To do this we came up with manual tests as well as utilizing Android Expresso to create Automated Tests.
+
+### Automated Test Cases
+
+To run our automated tests simple go to the following directory: 6300Fall18Team69/GroupProject/SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/
+
+Running the following files:
+
+* LoginRegistrationTest.java (tests the applications login and registration functionality)
+* QuizAddDelete.java (tests the applications Add Quiz, Delete Quiz, Practice Quiz functionality)
+
+### Manual Test Cases
+
+We created manual test cases regarding Quiz Statistics feature of our application.
+
+1. Verifying Quiz Statistic Fields are correct (contains First Score, Highest Score, First Perfect Score)
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select options -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Click Quiz Name
+* Click `Show Statistics`
+* View should include First Score, Highest Score, First Perfect Score
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/QuizStatisticsVerifyFields.PNG)
+
+2. Verify First Score is correct
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select options -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Alert Dialog displaying score for current Practice Quiz Session.
+* Click Quiz Name
+* Click `Show Statistics`
+* View should include First Score, Highest Score, First Perfect Score. Confirm First Score with Practice Quiz Session Score.
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizFinalScore.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/QuizScoreView.PNG)
+
+3. Verify High Score
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select options -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Perform Quiz twice (once getting 100%, second time getting 0%.
+* Click Quiz Name
+* Click `Show Statistics`
+* View should include First Score, Highest Score, First Perfect Score. High Score display 100%.
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizFinalScore.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/LowScoreRecorded.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/QuizScoreView.PNG)
+
+4. Verify current score is correct
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select correct option -> click `confirm` -> alert dialog displaying score -> click `OK` -> Select incorrect option -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Alert dialog indicates correct/incorrect and verifies
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizStatus.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/IncorrectDialog.PNG)
+
+5. Get current score
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select option -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Alert dialog indicates current score
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizStatus.PNG)
+
+6. Another user2 views Quiz Statistics & user gets first hundred/user2 has not taken quiz
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select option -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Register User2 (click `Register` -> input valid information in text fields -> click `Register`)
+* Click Quiz Name
+* Click `Show Statistics`
+* View should include "First Hundred: user" only
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/user2statsview.PNG)
+
