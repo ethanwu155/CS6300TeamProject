@@ -40,10 +40,10 @@ We will mainly be using JUnit, and potentially use Selenium as well for testing.
 
 | Purpose | Steps | Expected | Actual | P/F
 | ------- | :---- | :------- | :----- | :--
-| Test register new student | register as a new student and verify the fields are correct | verify correct fields | n/a | n/a |
-| Test login | login as an existing student and verify everything is correct | verify correct fields | n/a | n/a |
-| Test add quiz | create a quiz | verify that the fields in the quiz are correct upon creation | n/a | n/a | 
-| Test remove quiz | remove a quiz by name | verify that the quiz is removed | n/a | n/a |
+| Test register new student | register as a new student and verify the fields are correct | verify correct fields | succeeds | P |
+| Test login | login as an existing student and verify everything is correct | verify correct fields | succeeds | P |
+| Test add quiz | create a quiz | verify that the fields in the quiz are correct upon creation | succeeds | P | 
+| Test remove quiz | remove a quiz by name | verify that the quiz is removed | suceeds | P |
 | Test get quiz scores by student | create quizzes for a student, view them and verify fields are correct | verify correct fields| n/a | n/a |
 | Test get first score | login, create a quiz, practice quiz, get score | verify that score is correct | n/a | n/a |
 | Test get highest score | login, create a quiz, practice quiz with varying results, get highest score | verify highest score is correct | n/a | n/a |
@@ -53,6 +53,6 @@ We will mainly be using JUnit, and potentially use Selenium as well for testing.
 | Test get current score | login, create a quiz and quizevent, answer all questions with varying correctness | verify score is correct | n/a | n/a |
 | Test submit question response | login, create a quiz and quizevent, submit a question response | verify that question was graded | n/a | n/a |
 | Test get question result | login, create a quiz and quizevent, submit question response and call getQuestionResult() | verify that question was graded correctly | n/a | n/a |
-| Test add word | login, create a quiz and quizevent, call Question addWord() method | verify word is in Question wordList | n/a | n/a |
-| Test add incorrect definition | login, create a quiz and quizevent, call Question addIncorrectDefinition() method | verify incorrect definition is in incorrectDefinitions list | n/a | n/a |
+| Test add word | login, create a quiz and quizevent, call Question addWord() method | verify word is in Question wordList | verified | P |
+| Test add incorrect definition | login, create a quiz and quizevent, call Question addIncorrectDefinition() method | verify incorrect definition is in incorrectDefinitions list | verified | P |
 | Test system multiple users practicing quizzes | create a few users, have each user create a few quizzes, each user practices a few quizzes, get quiz scores by student | verify scores are correct | n/a | n/a |
