@@ -40,10 +40,22 @@ We will mainly be using JUnit, and potentially use Selenium as well for testing.
 
 | Purpose | Steps | Expected | Actual | P/F
 | ------- | :---- | :------- | :----- | :--
-| Test register new student | register as a new student and verify the fields are correct | verify correct fields | succeeds | P |
-| Test login | login as an existing student and verify everything is correct | verify correct fields | succeeds | P |
-| Test add quiz | create a quiz | verify that the fields in the quiz are correct upon creation | succeeds | P | 
-| Test remove quiz | remove a quiz by name | verify that the quiz is removed | suceeds | P |
+| Test register new student | register as a new student and verify the fields are correct | correct fields, & main screen opens | succeeds | P |
+| Test login | login as an existing student and verify everything is correct | main screen opens w/ welcome message | succeeds | P |
+| Test login w/ bad uname | login with an unregistered username | failed login | login fails | P |
+| Test register button | click "Register" on login screen | registration window opens | succeeds | P |
+| Test registering w/o all fields | attempt to register with every combination of one or more blank fields | failed registration | registration fails | P |
+| Test register w/ malformed email | attempt to register w/ an email which doesn't match ".+[@].+[.].+" | failed registration | registration fails | P |
+| Test register w/ taken uname | attempt to register w/ an already registered username | failed registration | registration fails | P |
+| Check username in welcome message | Verify the welcome message shown on the main screen after login contains the correct username | correct username | correct username | P |
+| Test cancel on Add Quiz | Test that a user can cancel adding a quiz and be returned to the main screen / quiz list | cancel works as expected | cancel works as expected | P |
+| Test adding quiz fails w/o name & description | Try adding a quiz w/o filling in both a name and description | quiz add fails | quiz add fails | P |
+| Test adding a quiz w/ no words | attempt to add a quiz w/ a name and description but no words | quiz add fails | quiz add fails | P |
+| Add Word button opens AddWord window | click the '+' to add a quiz and then "Add Word" | verify the AddWord fragment is displayed | AddWord displayed | P |
+| Test adding a quiz w/ enough bad defs | Attempt to add a quiz w/ name, description, & 1+ words but < 3*N bad definitions | add quiz fails | add quiz fails | P |
+| Test add quiz | attempt to create a valid quiz | verify that the fields in the quiz are correct upon creation | succeeds | P | 
+| Test remove owned quiz | add a quiz, then attempt to remove it | verify that the quiz is removed | suceeds | P |
+| Test remove unowned quiz | add a quiz, register/login a new user, attempt to delete a quiz | verify no quizzes are offered for deletion | no quizzes offered | P |
 | Test get quiz scores by student | create quizzes for a student, view them and verify fields are correct | verify correct fields| verified | P |
 | Test get first score | login, create a quiz, practice quiz, get score | verify that score is correct | verified | P |
 | Test get highest score | login, create a quiz, practice quiz with varying results, get highest score | verify highest score is correct | verified | P |
@@ -63,12 +75,13 @@ Testing is an important part of the software design process. To do this we came 
 
 ### Automated Test Cases
 
-To run our automated tests simple go to the following directory: 6300Fall18Team69/GroupProject/SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/
+Automated test cases (and a TestUtils helper class) are located in: 
+6300Fall18Team69/GroupProject/SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/
 
-Running the following files:
+To run the automated test cases, open the project in Android Studio and run the following files:
 
-* LoginRegistrationTest.java (tests the applications login and registration functionality)
-* QuizAddDelete.java (tests the applications Add Quiz, Delete Quiz, Practice Quiz functionality)
+* [LoginRegistrationTest.java](../SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/LoginRegistrationTest.java) (tests login and registration functionality)
+* [QuizAddDelete.java](../SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/QuizAddDelete.java) (tests adding, deleting, and practicing quizzes)
 
 ### Manual Test Cases
 
