@@ -113,4 +113,3 @@ Users can view statistics for individual quizzes. They can do this by clicking o
 The Application will display Quiz Statistic Summary including: User's First Score with timestamp, User's High Score with timestamp, and the First three Users to score a 100% on the Quiz.
 
 ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/development/GroupProject/Docs/pics/UserManual/QuizScoreView.PNG)
-

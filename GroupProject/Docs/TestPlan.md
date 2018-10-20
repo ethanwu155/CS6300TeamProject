@@ -40,19 +40,127 @@ We will mainly be using JUnit, and potentially use Selenium as well for testing.
 
 | Purpose | Steps | Expected | Actual | P/F
 | ------- | :---- | :------- | :----- | :--
-| Test register new student | register as a new student and verify the fields are correct | verify correct fields | succeeds | P |
-| Test login | login as an existing student and verify everything is correct | verify correct fields | succeeds | P |
-| Test add quiz | create a quiz | verify that the fields in the quiz are correct upon creation | succeeds | P | 
-| Test remove quiz | remove a quiz by name | verify that the quiz is removed | suceeds | P |
-| Test get quiz scores by student | create quizzes for a student, view them and verify fields are correct | verify correct fields| n/a | n/a |
-| Test get first score | login, create a quiz, practice quiz, get score | verify that score is correct | n/a | n/a |
-| Test get highest score | login, create a quiz, practice quiz with varying results, get highest score | verify highest score is correct | n/a | n/a |
-| Test practice quiz with score | login, create a quiz, practice quiz and get score | verify score is correct | n/a | n/a |
-| Test quiz generate question | login, create a quiz, test generate word function | verify word is valid | n/a | n/a |
-| Test QuizEvent is get next question | login, create a quiz and quizevent, call getNextQuestion() method | verify it returns a question | n/a | n/a |
-| Test get current score | login, create a quiz and quizevent, answer all questions with varying correctness | verify score is correct | n/a | n/a |
-| Test submit question response | login, create a quiz and quizevent, submit a question response | verify that question was graded | n/a | n/a |
-| Test get question result | login, create a quiz and quizevent, submit question response and call getQuestionResult() | verify that question was graded correctly | n/a | n/a |
+| Test register new student | register as a new student and verify the fields are correct | correct fields, & main screen opens | succeeds | P |
+| Test login | login as an existing student and verify everything is correct | main screen opens w/ welcome message | succeeds | P |
+| Test login w/ bad uname | login with an unregistered username | failed login | login fails | P |
+| Test register button | click "Register" on login screen | registration window opens | succeeds | P |
+| Test registering w/o all fields | attempt to register with every combination of one or more blank fields | failed registration | registration fails | P |
+| Test register w/ malformed email | attempt to register w/ an email which doesn't match ".+[@].+[.].+" | failed registration | registration fails | P |
+| Test register w/ taken uname | attempt to register w/ an already registered username | failed registration | registration fails | P |
+| Check username in welcome message | Verify the welcome message shown on the main screen after login contains the correct username | correct username | correct username | P |
+| Test cancel on Add Quiz | Test that a user can cancel adding a quiz and be returned to the main screen / quiz list | cancel works as expected | cancel works as expected | P |
+| Test adding quiz fails w/o name & description | Try adding a quiz w/o filling in both a name and description | quiz add fails | quiz add fails | P |
+| Test adding a quiz w/ no words | attempt to add a quiz w/ a name and description but no words | quiz add fails | quiz add fails | P |
+| Add Word button opens AddWord window | click the '+' to add a quiz and then "Add Word" | verify the AddWord fragment is displayed | AddWord displayed | P |
+| Test adding a quiz w/ enough bad defs | Attempt to add a quiz w/ name, description, & 1+ words but < 3*N bad definitions | add quiz fails | add quiz fails | P |
+| Test add quiz | attempt to create a valid quiz | verify that the fields in the quiz are correct upon creation | succeeds | P | 
+| Test remove owned quiz | add a quiz, then attempt to remove it | verify that the quiz is removed | suceeds | P |
+| Test remove unowned quiz | add a quiz, register/login a new user, attempt to delete a quiz | verify no quizzes are offered for deletion | no quizzes offered | P |
+| Test get quiz scores by student | create quizzes for a student, view them and verify fields are correct | verify correct fields| verified | P |
+| Test get first score | login, create a quiz, practice quiz, get score | verify that score is correct | verified | P |
+| Test get highest score | login, create a quiz, practice quiz with varying results, get highest score | verify highest score is correct | verified | P |
+| Test practice quiz with score | login, create a quiz, practice quiz and get score | verify score is correct | verified | P |
+| Test quiz generate question | login, create a quiz, test generate word function | verify word is valid | succeeds | P |
+| Test QuizEvent is get next question | login, create a quiz and quizevent, call getNextQuestion() method | verify it returns a question | succeeds | P |
+| Test get current score | login, create a quiz and quizevent, answer all questions with varying correctness | verify score is correct | verified | P |
+| Test submit question response | login, create a quiz and quizevent, submit a question response | verify that question was graded | succeeds | P |
 | Test add word | login, create a quiz and quizevent, call Question addWord() method | verify word is in Question wordList | verified | P |
 | Test add incorrect definition | login, create a quiz and quizevent, call Question addIncorrectDefinition() method | verify incorrect definition is in incorrectDefinitions list | verified | P |
-| Test system multiple users practicing quizzes | create a few users, have each user create a few quizzes, each user practices a few quizzes, get quiz scores by student | verify scores are correct | n/a | n/a |
+| Test system multiple users practicing quizzes | create a few users, have each user create a few quizzes and practice each other's quizzes | verify users can practice each other quizzes | succeed | P |
+| Test system for multiple user quiz results | create a few users, have one create a quiz and both users practice quiz. first user gets hundred | verify first hundred goes to first user | verified | P |
+
+## 3 Testing
+
+Testing is an important part of the software design process. To do this we came up with manual tests as well as utilizing Android Expresso to create Automated Tests.
+
+### Automated Test Cases
+
+Automated test cases (and a TestUtils helper class) are located in: 
+6300Fall18Team69/GroupProject/SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/
+
+To run the automated test cases, open the project in Android Studio and run the following files:
+
+* [LoginRegistrationTests.java](../SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/LoginRegistrationTests.java) (tests login and registration functionality)
+* [QuizAddDeleteTests.java](../SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/QuizAddDeleteTests.java) (tests adding, deleting, and practicing quizzes)
+
+### Manual Test Cases
+
+We created manual test cases regarding Quiz Statistics feature of our application.
+
+1. Verifying Quiz Statistic Fields are correct (contains First Score, Highest Score, First Perfect Score)
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select options -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Click Quiz Name
+* Click `Show Statistics`
+* View should include First Score, Highest Score, First Perfect Score
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/QuizStatisticsVerifyFields.PNG)
+
+2. Verify First Score is correct
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select options -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Alert Dialog displaying score for current Practice Quiz Session.
+* Click Quiz Name
+* Click `Show Statistics`
+* View should include First Score, Highest Score, First Perfect Score. Confirm First Score with Practice Quiz Session Score.
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizFinalScore.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/QuizScoreView.PNG)
+
+3. Verify High Score
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select options -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Perform Quiz twice (once getting 100%, second time getting 0%.
+* Click Quiz Name
+* Click `Show Statistics`
+* View should include First Score, Highest Score, First Perfect Score. High Score display 100%.
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizFinalScore.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/LowScoreRecorded.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/QuizScoreView.PNG)
+
+4. Verify current score is correct
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select correct option -> click `confirm` -> alert dialog displaying score -> click `OK` -> Select incorrect option -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Alert dialog indicates correct/incorrect and verifies
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizStatus.PNG) ![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/IncorrectDialog.PNG)
+
+5. Get current score
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select option -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Alert dialog indicates current score
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/PracticeQuizStatus.PNG)
+
+6. Another user2 views Quiz Statistics & user gets first hundred/user2 has not taken quiz
+
+* Register User (click `Register` -> input valid information in text fields -> click `Register`)
+* Create Quiz (click `+` -> input Quiz Name and Description -> click `Add Word` -> enter Word/Definition -> click `Add Bad Definition` -> enter 3*N (N = number of words) definitions -> click `Save`)
+* Click Quiz Name
+* Click `Practice Quiz`
+* Perform Quiz (Select option -> click `confirm` -> alert dialog displaying score -> click `OK` -> repeat until quiz is complete)
+* Register User2 (click `Register` -> input valid information in text fields -> click `Register`)
+* Click Quiz Name
+* Click `Show Statistics`
+* View should include "First Hundred: user" only
+
+![alt text](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/Docs/pics/UserManual/user2statsview.PNG)
+
