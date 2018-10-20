@@ -80,8 +80,8 @@ Automated test cases (and a TestUtils helper class) are located in:
 
 To run the automated test cases, open the project in Android Studio and run the following files:
 
-* [LoginRegistrationTest.java](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/LoginRegistrationTest.java) (tests login and registration functionality)
-* [QuizAddDelete.java](https://github.gatech.edu/gt-omscs-se-2018fall/6300Fall18Team69/blob/master/GroupProject/SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/QuizAddDelete.java) (tests adding, deleting, and practicing quizzes)
+* [LoginRegistrationTests.java](../SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/LoginRegistrationTests.java) (tests login and registration functionality)
+* [QuizAddDeleteTests.java](../SDPVocabQuiz/app/src/androidTest/java/edu/gatech/seclass/sdpvocabquiz/QuizAddDeleteTests.java) (tests adding, deleting, and practicing quizzes)
 
 ### Manual Test Cases
 
